@@ -2,7 +2,7 @@
 	"manifest_version": 2,
 	"name": "sql-helper-demo",
 	"version": "0.0.1",
-	"description": "简单的Chrome扩展demo",
+	"description": "用自然语言生成 SQL 语句，帮助用户高效使用 ONES Performance。",
 	"icons":
 	{
 		"16": "asset/logo.png",
