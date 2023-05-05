@@ -1,0 +1,10 @@
+{
+  "name": "Sql-helper",
+  "description": "用自然语言生成 SQL 语句，帮助用户高效使用 ONS Performance。",
+  "version": "1.0",
+  "manifest_version": 3,
+  "action": {
+    "default_popup": "index.html",
+    "default_icon": "logo.png"
+  }
+}
