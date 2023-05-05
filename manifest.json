@@ -5,9 +5,9 @@
 	"description": "简单的Chrome扩展demo",
 	"icons":
 	{
-		"16": "asset/logo.png",
-		"48": "asset/logo.png",
-		"128": "asset/logo.png"
+		"16": "asset/icon.png",
+		"48": "asset/icon.png",
+		"128": "asset/icon.png"
 	},
 	"background":
 	{
@@ -15,7 +15,7 @@
 	},
 	"browser_action": 
 	{
-		"default_icon": "asset/logo.png",
+		"default_icon": "asset/icon.png",
 		"default_title": "这是一个示例Chrome插件",
 		"default_popup": "popup.html"
 	},
