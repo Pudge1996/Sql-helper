@@ -1,0 +1,19 @@
+{
+  "name": "sql-helper",
+  "version": "0.0.1",
+  "description": "sql helper",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jervisones/Sql-helper.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jervisones/Sql-helper/issues"
+  },
+  "homepage": "https://github.com/jervisones/Sql-helper#readme"
+}
