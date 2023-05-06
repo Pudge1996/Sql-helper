@@ -1,25 +1,49 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
-  "icons": [
-    {
-      "src": "favicon.ico",
-      "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
-    },
-    {
-      "src": "logo192.png",
-      "type": "image/png",
-      "sizes": "192x192"
-    },
-    {
-      "src": "logo512.png",
-      "type": "image/png",
-      "sizes": "512x512"
-    }
-  ],
-  "start_url": ".",
-  "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+	"name": "sql-helper-demo",
+	"version": "0.0.1",
+	"description": "用自然语言生成 SQL 语句，帮助用户高效使用 ONES Performance。",
+	"manifest_version": 3,
+	"background":{
+		"service_worker": "static/js/background.js"
+	},
+	"icons": {
+		"16": "/images/icon.png",
+		"32": "/images/icon.png",
+		"48": "/images/icon.png",
+		"128": "/images/icon.png"
+	},
+
+	"content_scripts": [
+		{
+			"matches": ["<all_urls>"],
+			"js": ["static/js/content.js"],
+            "css": ["static/css/content.css"],
+            "run_at": "document_end"
+		}
+	],
+	"permissions":[
+		"storage",
+		"declarativeContent"
+	],
+	"host_permissions": [],
+	"web_accessible_resources": [
+		{
+			"resources": ["/images/app.png"],
+			"matches": ["<all_urls>"]
+		},
+		{
+			"resources": ["insert.js"],
+			"matches": ["<all_urls>"]
+		}
+	],
+	"action": {
+		"default_popup": "index.html",
+		"default_icon": {
+			"16": "/images/icon.png",
+			"32": "/images/icon.png",
+			"48": "/images/icon.png",
+			"128": "/images/icon.png"
+		},
+		"default_title": "ONES Sql-helper"
+	}
 }
