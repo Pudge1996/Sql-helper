@@ -1,6 +1,12 @@
 # Sql-helper
 Sql-helper : a chrome plugins with Ai
 
+
+## 全局样式命名
+G-xx: 表示全集样式，用来定义共用样式
+P-xx: 表示页面样式，用来设置页面的背景颜色、尺寸、定制化调整此页面的组件样式。
+M-xx: 表示组件样式，专注组件本身样式
+
 ## manifest.json 注释
 
 ```json
