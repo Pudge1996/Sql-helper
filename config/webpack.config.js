@@ -74,8 +74,8 @@ const cssModuleRegex = /\.module\.css$/;
 const sassRegex = /\.(scss|sass)$/;
 const sassModuleRegex = /\.module\.(scss|sass)$/;
 const lessRegex = /\.less$/;
-const lessModuleRegex = /\.module\.styl$/;
-const stylusRegex = /\.less$/;
+const lessModuleRegex = /\.module\.less$/;
+const stylusRegex = /\.styl$/;
 const stylusModuleRegex = /\.module\.styl$/;
 
 const hasJsxRuntime = (() => {
