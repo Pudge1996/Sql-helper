@@ -1,6 +1,26 @@
 # Sql-helper
 Sql-helper : a chrome plugins with Ai
 
+技术栈：React + Antd 
+Manifest V3 支持 Chrome 96 +
+样式结构支持
+- Stylus (推荐)
+- Sass
+- Less
+
+## 运行脚本
+```bash
+// 运行调试
+yarn start 
+// 打包构建插件
+yarn build
+```
+
+## 插件调试方式
+- `yarn build` 之后 打开 chrome://extensions/ 
+- 开启开发者模式
+- 选择‘加载已解压的拓展程序’
+- 选择工程中刚生成的 `build` 目录
 
 ## 全局样式命名
 G-xx: 表示全集样式，用来定义共用样式

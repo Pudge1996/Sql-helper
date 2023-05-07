@@ -17,6 +17,7 @@
 		{
 			"matches": ["<all_urls>"],
 			"js": ["static/js/content.js"],
+            "css": ["static/css/content.css"],
             "run_at": "document_end"
 		}
 	],
@@ -27,7 +28,7 @@
 	"host_permissions": [],
 	"web_accessible_resources": [
 		{
-			"resources": ["/images/app.png"],
+			"resources": ["/images/app.png", "/images/icon.png"],
 			"matches": ["<all_urls>"]
 		},
 		{
