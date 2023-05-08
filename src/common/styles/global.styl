@@ -1,5 +1,6 @@
 html, body, #root
     height: 100%
+    line-height: 1.2
 /* 清除浮动 */
 .clearfix:after
     content: '.'
@@ -9,3 +10,85 @@ html, body, #root
     visibility: hidden
 .clearfix
     display: block
+
+
+/* 颜色 */
+gray1 = #16171A
+gray2 = #2B2C2F
+gray3 = #696A6D
+gray4 = #A8A8AA
+gray5 = #D1D2D4
+gray6 = #F0F0F2
+gray7 = #FBFBFD //背景色
+
+brand1 = #0064FF
+brand2 = #00007A
+brand3 = #0032BE
+brand4 = #DEEFFF
+brand5 = #DDEAF5
+
+basePadding = 10px 15px
+largePadding = 20px 15px
+
+/* 禁用按钮按下时的波纹效果 */
+button div
+    display: none
+
+// 弹窗
+.ant-modal .ant-modal-content
+    padding: largePadding
+
+// Tab
+.ant-tabs-top >.ant-tabs-nav
+    margin-bottom: 10px
+
+/* 按钮 */
+.ant-btn
+    transition: none
+    box-shadow: none 
+    height: 42px
+    font-size: 16px
+    padding-inline: 20px
+
+.ant-btn-default
+    border: none
+    background-color: gray6
+    color: gray3
+    &:hover
+        color: brand1 !important
+        background-color: brand4
+    &:active
+        background-color: brand5
+
+.api_key_input
+    height: 42px
+    padding: 0
+
+/* Input */
+.ant-input
+.ant-input:hover
+.ant-input:focus
+input
+    background: gray6
+    padding: basePadding
+    transition: box-shadow 0.1s
+
+    
+.ant-input:focus
+    box-shadow: 0 0 0 2px brand1
+    border-radius: 3px
+
+.ant-input::placeholder
+    color: gray3 !important
+
+
+.ant-form-vertical .ant-form-item-label
+    padding-bottom: 5px 
+    font-weight: 500
+    user-select: none
+    cursor default
+    &>label
+        font-size: 16px
+
+.ant-form-item
+    margin: 0
