@@ -1,82 +1,75 @@
-import { useState } from 'react'
-import { Button, Input, Modal, Select } from 'antd'
+import Configuration from "../configuration";
+import { Input, Modal, Select, ConfigProvider, Tabs } from "antd";
 // import { apiReqs } from '@/api'
-import './mainModal.styl'
-
-const { Option } = Select
+import "./mainModal.styl";
 
 function MainModal(props) {
-    const [text, setText] = useState(null)
-    const [option, setOption] = useState('react')
+  // 接收父组件控制本组件关闭的方法
+  const { onClose } = props;
 
-    // 接收父组件控制本组件关闭的方法
-    const { onClose } = props
+  // Tabs
+  const onChange = (key) => {
+    console.log(key);
+  };
+  const items = [
+    {
+      key: "1",
+      label: `聊天`,
+      children: `Content of Tab Pane 1`,
+    },
+    {
+      key: "2",
+      label: `配置`,
+      children: <Configuration />,
+    },
+  ];
 
-    // 随着Input的输入变化，及时更新text
-    const handleIptChange = (e) => {
-        setText(e.target.value)
-    }
-
-    // 随着Select的选择变化，及时更新option
-    const handleSelectChange = (value) => {
-        setOption(value)
-    }
-
-    // 提交
-    const submit = () => {
-        // apiReqs.submitByBackground({
-        //     data: {
-        //         text,
-        //         option,
-        //     },
-        //     success: (res) => {
-        //         console.log(res)
-        //     },
-        //     fail: (res) => {
-        //         alert(res)
-        //     },
-        // })
-    }
-
-    return (
-        <Modal
-            className="CRX-mainModal"
-            open={true}
-            title={'CRX对话框'}
-            footer={null}
-            maskClosable={false}
-            onCancel={() => {
-                onClose && onClose()
-            }}
-            width={600}
-        >
-            <div className="main-content-con">
-                <div className="item-con">
-                    <Input
-                        placeholder="请输入内容"
-                        value={text}
-                        onChange={handleIptChange}
-                    />
-                </div>
-                <div className="item-con">
-                    <Select
-                        value={option}
-                        onChange={handleSelectChange}
-                        style={{ width: '100%' }}
-                    >
-                        <Option value="React">React</Option>
-                        <Option value="Vue">Vue</Option>
-                        <Option value="Angular">Angular</Option>
-                    </Select>
-                </div>
-                <div>
-                    <Button type="primary" block onClick={submit}>
-                        Submit
-                    </Button>
-                </div>
-            </div>
-        </Modal>
-    )
+  return (
+    <ConfigProvider
+      autoInsertSpaceInButton={false}
+      theme={{
+        token: {
+          colorPrimary: "#0064ff",
+          colorPrimaryHover: "#226AFF",
+          colorPrimaryActive: "#0032BE",
+          colorSuccess: "#00be5e",
+          colorWarning: "#ffaa33",
+          colorError: "#ff4433",
+          colorInfo: "#0064ff",
+          colorText: "#303030",
+          colorTextSecondary: "#606060",
+          colorTextTertiary: "#909090",
+          colorBorder: "#c7c7c7",
+          colorBgMask: "rgba(48, 48, 48, 0.5)",
+          borderRadius: 3,
+          sizeStep: 5,
+          sizeUnit: 5,
+          wireframe: false,
+        },
+      }}
+    >
+      <Modal
+        className="CRX-mainModal"
+        open={true}
+        title={"CRX对话框"}
+        footer={null}
+        maskClosable={false}
+        onCancel={() => {
+          onClose && onClose();
+        }}
+        width={320}
+        mask={false}
+      >
+        <Tabs
+          defaultActiveKey="1"
+          items={items}
+          centered
+          onChange={onChange}
+          size="small"
+        />
+      </Modal>
+    </ConfigProvider>
+  );
 }
 
-export default MainModal
+export default MainModal;
