@@ -9,7 +9,7 @@ const { Option } = Select
 export default function Login() {
     // 路由钩子
     const navigate = useNavigate();
-    const [option, setOption] = useState('react')
+    const [option, setOption] = useState('gpt-3.5-turbo')
 
     // 随着Select的选择变化，及时更新option
     const handleSelectChange = (value) => {
