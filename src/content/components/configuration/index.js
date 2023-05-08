@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button, Input, Select, Form, Space, ConfigProvider, Tabs } from "antd";
+import { Button, Input, Form, Space, ConfigProvider } from "antd";
 // import { apiReqs } from '@/api'
 // import "./configuration.styl";
 
@@ -31,29 +31,7 @@ function MainModal(props) {
   const { TextArea } = Input;
 
   return (
-    <ConfigProvider
-      autoInsertSpaceInButton={false}
-      theme={{
-        token: {
-          colorPrimary: "#0064ff",
-          colorPrimaryHover: "#226AFF",
-          colorPrimaryActive: "#0032BE",
-          colorSuccess: "#00be5e",
-          colorWarning: "#ffaa33",
-          colorError: "#ff4433",
-          colorInfo: "#0064ff",
-          colorText: "#303030",
-          colorTextSecondary: "#606060",
-          colorTextTertiary: "#909090",
-          colorBorder: "#c7c7c7",
-          colorBgMask: "rgba(48, 48, 48, 0.5)",
-          borderRadius: 3,
-          sizeStep: 5,
-          sizeUnit: 5,
-          wireframe: false,
-        },
-      }}
-    >
+    <>
       <Space
         direction="vertical"
         size={20}
@@ -101,7 +79,7 @@ function MainModal(props) {
           </Form.Item>
         </Form>
       </Space>
-    </ConfigProvider>
+    </>
   );
 }
 

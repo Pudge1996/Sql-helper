@@ -1,5 +1,5 @@
+import { Modal, ConfigProvider, Tabs } from "antd";
 import Configuration from "../configuration";
-import { Input, Modal, Select, ConfigProvider, Tabs } from "antd";
 // import { apiReqs } from '@/api'
 import "./mainModal.styl";
 
