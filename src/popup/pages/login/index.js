@@ -37,8 +37,9 @@ export default function Login() {
                     onChange={handleSelectChange}
                     style={{ width: '100%' }}
                 >
+                    {/* TODO: 调取 get modal list 获取可用模型列表 */}
                     <Option value="gpt-3.5-turbo">gpt-3.5-turbo</Option>
-                    <Option value="gpt-4-32k">gpt-3.0</Option>
+                    <Option value="gpt-4-32k">text-davinci-003</Option>
                     <Option value="gpt-4-32k">gpt-4-32k</Option>
                 </Select>
             </div>
