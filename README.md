@@ -2,11 +2,11 @@
 
 Sql-helper : a chrome plugins with Ai
 
-技术栈：React + Antd 
+技术栈：React + Ant Design
 Manifest V3 支持 Chrome 96 +
 样式结构支持
 
-- Stylus (推荐)
+- Stylus (推荐：拥有丰富的表现形式，相比其他两个预编译语言更好的优点是能够很简洁的写css [文档](https://www.stylus-lang.cn/))
 - Sass
 - Less
 
