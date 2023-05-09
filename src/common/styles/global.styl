@@ -27,10 +27,15 @@ brand3 = #0032BE
 brand4 = #DEEFFF
 brand5 = #DDEAF5
 
+warning1 = #FFAA33
+warning2 = #FFF7C8
+
 basePadding = 10px 15px
 largePadding = 20px 15px
+baseRounded = 3px
 
-/* 禁用按钮按下时的波纹效果 */
+// 表单界面
+
 button div
     display: none
 
@@ -47,8 +52,8 @@ button div
     transition: none
     box-shadow: none 
     height: 42px
-    font-size: 16px
     padding-inline: 20px
+    font-size: 16px
 
 .ant-btn-default
     border: none
@@ -76,7 +81,7 @@ input
     
 .ant-input:focus
     box-shadow: 0 0 0 2px brand1
-    border-radius: 3px
+    border-radius: baseRounded
 
 .ant-input::placeholder
     color: gray3 !important
@@ -89,6 +94,49 @@ input
     cursor default
     &>label
         font-size: 16px
+        display: block
 
 .ant-form-item
     margin: 0
+
+// 聊天界面
+
+.chatline
+    display: flex
+    flex-direction: column
+
+.bubble
+    padding: basePadding
+    background: gray6
+    border-radius: baseRounded
+    margin-bottom: 20px
+    flex-shrink: 0; // 禁止缩小
+    align-self: flex-start; // 改为左对齐
+    max-width: 90%;
+    word-wrap: break-word;
+    font-weight: 500
+    & p:first-child // 聊天气泡的名字
+        font-weight: 400
+
+.bubble-right // User 的聊天气泡
+  align-self: flex-end
+  background: brand4
+  &>p
+    font-weight: 400
+
+.bubble-center // System 的聊天气泡
+    width: 100%
+    max-width: 100%
+    // color: warning1
+    background-color: warning2
+    text-align: center
+    font-weight: 400
+
+
+.bubble-name
+    color: gray3
+    font-weight: 400
+
+
+.hidden
+    display: none

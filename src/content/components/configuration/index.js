@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button, Input, Form, Space, ConfigProvider } from "antd";
+import { Button, Input, Form, Space } from "antd";
 // import { apiReqs } from '@/api'
 // import "./configuration.styl";
 

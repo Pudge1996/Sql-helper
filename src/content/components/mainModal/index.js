@@ -1,5 +1,6 @@
 import { Modal, ConfigProvider, Tabs } from "antd";
 import Configuration from "../configuration";
+import Chat from "../chat";
 // import { apiReqs } from '@/api'
 import "./mainModal.styl";
 
@@ -15,7 +16,7 @@ function MainModal(props) {
     {
       key: "1",
       label: `聊天`,
-      children: `Content of Tab Pane 1`,
+      children: <Chat />,
     },
     {
       key: "2",
@@ -36,9 +37,9 @@ function MainModal(props) {
           colorWarning: "#ffaa33",
           colorError: "#ff4433",
           colorInfo: "#0064ff",
-          colorText: "#303030",
-          colorTextSecondary: "#606060",
-          colorTextTertiary: "#909090",
+          colorText: "#16171A",
+          colorTextSecondary: "#2B2C2F",
+          colorTextTertiary: "#696A6D",
           colorBorder: "#c7c7c7",
           colorBgMask: "rgba(48, 48, 48, 0.5)",
           borderRadius: 3,
