@@ -18,7 +18,7 @@ function MainModal(props) {
 
   // 提交
   const postInitPrompt = () => {
-    // apiReqs.getModalList({
+    // apiReqs.getModalList({ 
     //     headers: {
     //       Authorization: `Bearer ${apiKey}`
     //     },
