@@ -65,3 +65,4 @@ chrome.runtime.onInstalled.addListener(function () {
         return true
     })
 })
+

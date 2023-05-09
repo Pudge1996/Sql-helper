@@ -32,13 +32,18 @@ export const API_FAILED = '网络连接异常，请稍后再试'
 
 // API请求汇总
 export const apiReqs = {
-
+    // 获取模型列表
     getModalList: (config) => {
         config.url = GPT_HOST + 'models'
         config.method = METHOD_TYPE.GET
         apiFetch(config)
-    }
-    ,
+    },
+    // 获取聊天信息
+    postChat: (config) => {
+        config.url = GPT_HOST + 'chat/completions'
+        config.method = METHOD_TYPE.POST
+        apiFetch(config)
+    },
     // 登录
     signIn: (config) => {
         config.url = API_DOMAIN + 'login/'
