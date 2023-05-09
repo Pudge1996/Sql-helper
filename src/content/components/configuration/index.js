@@ -1,9 +1,14 @@
-import { React, useState } from "react";
+
+import { useState, useRef, React} from "react";
 import { Button, Input, Form } from "antd";
-// import { apiReqs } from '@/api'
+import { apiReqs } from '@/api'
+
 
 function MainModal(props) {
   const [text, setText] = useState(null);
+  const [apiKey, setApiKey] = useState('');
+  const [form] = Form.useForm();
+  const refForm = useRef('form');
 
   // 随着Input的输入变化，及时更新text
   const handleIptChange = (e) => {
@@ -11,25 +16,40 @@ function MainModal(props) {
   };
 
   // 提交
-  const submit = () => {
-    // apiReqs.submitByBackground({
-    //     data: {
-    //         text,
-    //         option,
-    //     },
-    //     success: (res) => {
-    //         console.log(res)
-    //     },
-    //     fail: (res) => {
-    //         alert(res)
-    //     },
-    // })
+  const getModalList = () => {
+    apiReqs.getModalList({
+        headers: {
+          Authorization: `Bearer ${apiKey}`
+        },
+        success: (res) => {
+            console.log(res)
+        },
+        fail: (res) => {
+            alert(res)
+        },
+    })
   };
 
+  // 保存API Key
+  const setCustomApiKey = (e) => {
+
+    console.log('保存API Key 1', e);
+    console.log('ref value', refForm.current.input.value);
+    setApiKey(refForm.current.input.value)
+    console.log("保存API Key form",form );
+  };
+  const onFinishFailed = (e) => {
+    console.log('数据获取失败',e)
+  }
+
+  const setCustomApiKeyOnsubmit = (e) => {
+    console.log('保存API Key 2', e);
+  };
   // 文本域
   const { TextArea } = Input;
 
   return (
+
     <div className="configuration">
       <Form layout="vertical" className="key-value">
         {/* Key & Value 表单 */}
@@ -47,7 +67,7 @@ function MainModal(props) {
           />
         </Form.Item>
         <Form.Item>
-          <Button type="primary" block={true} htmlType="submit">
+          <Button onClick={getModalList} type="primary" block={true} htmlType="submit">
             保存
           </Button>
         </Form.Item>
@@ -61,7 +81,8 @@ function MainModal(props) {
       >
         <Form.Item label="API Key" htmlFor="apiKey" style={{ width: "100%" }}>
           <Input.Password
-            id="apiKey"
+            ref={refForm}
+            name="apiKey"
             bordered={false}
             className="api_key_input"
             visibilityToggle={false}
@@ -69,7 +90,7 @@ function MainModal(props) {
           />
         </Form.Item>
         <Form.Item>
-          <Button type="default" htmlType="submit">
+          <Button type="default" htmlType="submit" onSubmit={setCustomApiKeyOnsubmit}>
             保存
           </Button>
         </Form.Item>
