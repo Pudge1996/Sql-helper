@@ -2,11 +2,11 @@
 
 Sql-helper : a chrome plugins with Ai
 
-技术栈：React + Antd 
+技术栈：React + Ant Design
 Manifest V3 支持 Chrome 96 +
 样式结构支持
 
-- Stylus (推荐)
+- Stylus (推荐：拥有丰富的表现形式，相比其他两个预编译语言更好的优点是能够很简洁的写css [文档](https://www.stylus-lang.cn/))
 - Sass
 - Less
 
@@ -27,6 +27,7 @@ yarn build
 - 选择工程中刚生成的 `build` 目录
 
 ## 全局样式命名
+
 G-xx: 表示全集样式，用来定义共用样式
 P-xx: 表示页面样式，用来设置页面的背景颜色、尺寸、定制化调整此页面的组件样式。
 M-xx: 表示组件样式，专注组件本身样式

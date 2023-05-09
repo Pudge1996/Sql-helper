@@ -4,9 +4,17 @@ import '@/mock'
 
 // 请求服务器地址（开发环境模拟请求地址）
 let API_DOMAIN = '/api/'
+const GPT_HOST = 'https://api.openai.com/v1/'
 // 请求服务器地址（正式build环境真实请求地址）REACT_APP_DEBUG的值来自于11.1章节创建的.env.development文件
 if (process.env.REACT_APP_DEBUG !== 'true') {
     API_DOMAIN = 'http://localhost/api/'
+}
+
+const METHOD_TYPE = {
+    GET: 'get',
+    POST: 'post',
+    PUT: 'put',
+    DELETE: 'delete',
 }
 
 // API请求正常，数据正常
@@ -24,23 +32,30 @@ export const API_FAILED = '网络连接异常，请稍后再试'
 
 // API请求汇总
 export const apiReqs = {
+
+    getModalList: (config) => {
+        config.url = GPT_HOST + 'models'
+        config.method = METHOD_TYPE.GET
+        apiFetch(config)
+    }
+    ,
     // 登录
     signIn: (config) => {
         config.url = API_DOMAIN + 'login/'
-        config.method = 'post'
+        config.method = METHOD_TYPE.POST
         apiFetch(config)
     },
     // 获取数据
     getData: (config) => {
         config.url = API_DOMAIN + 'getData/'
-        config.method = 'get'
+        config.method = METHOD_TYPE.GET
         apiFetch(config)
     },
     // 委托background提交数据
     submitByBackground: (config) => {
         config.background = true
         config.url = API_DOMAIN + 'submit/'
-        config.method = 'post'
+        config.method = METHOD_TYPE.POST
         apiFetch(config)
     },
 }
@@ -73,7 +88,7 @@ export function apiRequest(config) {
     }
 
     // 如果没有设置config.method，则默认为post
-    config.method = config.method || 'post'
+    config.method = config.method || METHOD_TYPE.POST
 
     // 请求头设置
     let headers = {}
@@ -95,8 +110,11 @@ export function apiRequest(config) {
     // 准备好请求的全部数据
     let axiosConfig = {
         method: config.method,
-        headers,
-        body: data,
+        headers: {...headers, ...config.headers}, // TODO: 暴露 "Authorization: Bearer $OPENAI_API_KEY"
+    }
+    if (config.method !== METHOD_TYPE.GET) {
+        const body = data;
+        axiosConfig = {...axiosConfig, body}
     }
 
     // 发起请求
@@ -108,7 +126,8 @@ export function apiRequest(config) {
             // 请求成功的回调
             config.success && config.success(result)
         })
-        .catch(() => {
+        .catch((e) => {
+            console.log('请求异常：', e);
             // 请求结束的回调
             config.done && config.done()
             // 请求失败的回调
