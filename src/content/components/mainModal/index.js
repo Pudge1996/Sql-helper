@@ -58,8 +58,9 @@ function MainModal(props) {
         onCancel={() => {
           onClose && onClose();
         }}
-        width={320}
+        width={360}
         mask={false}
+        centered
       >
         <Tabs
           defaultActiveKey="1"
@@ -67,6 +68,8 @@ function MainModal(props) {
           centered
           onChange={onChange}
           size="small"
+          tabBarGutter="0"
+          animated={{ inkBar: true, tabPane: false }}
         />
       </Modal>
     </ConfigProvider>

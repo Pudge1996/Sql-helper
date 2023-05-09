@@ -1,7 +1,7 @@
 html, body, #root
     height: 100%
     line-height: 1.2
-/* 清除浮动 */
+// 清除浮动
 .clearfix:after
     content: '.'
     display: block
@@ -10,9 +10,11 @@ html, body, #root
     visibility: hidden
 .clearfix
     display: block
+.hidden
+    display: none
 
 
-/* 颜色 */
+// 颜色
 gray1 = #16171A
 gray2 = #2B2C2F
 gray3 = #696A6D
@@ -31,29 +33,33 @@ warning1 = #FFAA33
 warning2 = #FFF7C8
 
 basePadding = 10px 15px
-largePadding = 20px 15px
+largePadding = 15px 15px 20px
 baseRounded = 3px
+largeRounded = 8px
 
-// 表单界面
+baseRing = 0 0 0 2px white, 0 0 0 4.5px brand1
+shadowTransition = box-shadow 0.06s ease
 
-button div
-    display: none
+monoFont = ui-monospace, SFMono-Regular, "SF Mono", "Roboto Mono", Menlo, Consolas, "Liberation Mono", monospace
 
-// 弹窗
-.ant-modal .ant-modal-content
-    padding: largePadding
+// ▼▼ 通用 ▼▼
 
-// Tab
-.ant-tabs-top >.ant-tabs-nav
-    margin-bottom: 10px
-
-/* 按钮 */
+// ▼▼ 按钮 ▼▼
 .ant-btn
-    transition: none
+    transition: shadowTransition
     box-shadow: none 
     height: 42px
     padding-inline: 20px
     font-size: 16px
+    margin: 0
+
+    div
+        display: none
+    &:not(:disabled):focus-visible
+        box-shadow: baseRing
+        outline: none
+        transition: shadowTransition
+
 
 .ant-btn-default
     border: none
@@ -64,29 +70,28 @@ button div
         background-color: brand4
     &:active
         background-color: brand5
+// ▲▲ 按钮 ▲▲
 
-.api_key_input
-    height: 42px
-    padding: 0
-
-/* Input */
+// ▼▼ Input ▼▼
 .ant-input
 .ant-input:hover
 .ant-input:focus
 input
     background: gray6
     padding: basePadding
-    transition: box-shadow 0.1s
-
+    transition: shadowTransition
+    padding: basePadding !important
     
 .ant-input:focus
-    box-shadow: 0 0 0 2px brand1
+    box-shadow: baseRing
     border-radius: baseRounded
+    transition: shadowTransition
 
 .ant-input::placeholder
     color: gray3 !important
+// ▲▲ Input ▲▲
 
-
+// ▼▼ 表单 ▼▼
 .ant-form-vertical .ant-form-item-label
     padding-bottom: 5px 
     font-weight: 500
@@ -98,17 +103,88 @@ input
 
 .ant-form-item
     margin: 0
+// ▲▲ 表单 ▲▲
 
-// 聊天界面
+// ▲▲ 通用 ▲▲
 
-.chatline
+// ▼▼ 弹窗 ▼▼
+.ant-modal .ant-modal-content
+    padding: 0
+    // height: 560px
+    // overflow: hidden
+// ▲▲ 弹窗 ▲▲
+
+// ▼▼ Tab ▼▼
+.ant-tabs-top >.ant-tabs-nav
+    margin-bottom: 10px
+    padding-inline: 15px
+    margin-bottom: 0;
+    color: gray3
+
+.ant-tabs-nav-list // 标签满宽度实现
+    width: 100%
+    .ant-tabs-tab
+        width: 100%
+        &>div
+            text-align: center
+            flex: 1
+
+.ant-tabs-nav-list .ant-tabs-tab>div // Tab 文字
+    font-size: 16px
+    z-index: 1
+    
+.ant-tabs .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn // 选中的 Tab，清除默认样式
+    text-shadow: none
+    transition: none
+    font-weight: 500
+    
+.ant-tabs-small >.ant-tabs-nav .ant-tabs-tab // tab 的尺寸
+    padding: 5px 0
+
+.ant-tabs-top >.ant-tabs-nav::before // 清除底部灰色下划线
+    display: none
+
+.ant-tabs-ink-bar-animated // 改造底部蓝色指示器
+    height: 100% !important
+    background-color: gray6 !important
+    border-radius: largeRounded
+    overflow: hidden
+    padding: basePadding
+// ▲▲ Tab ▲▲
+
+// ▼▼ 配置面板 ▼▼
+.configuration // 配置页面自适应高度
+    padding: largePadding
+    height: 460px
     display: flex
     flex-direction: column
+    gap: 20px
+    .key-value // key-value 表单
+        display: flex
+        flex-direction: column
+        flex-grow: 1
+        gap: 10px
+        textarea
+            resize: none;
+            height 100%
+        .ant-form-item-row
+            height: 100%
+        .ant-form-item-control
+            .ant-form-item-control-input
+                height: 100%
+                .ant-form-item-control-input-content
+                    height: 100%
+.api_key_input 
+    height: 42px
+    padding: 0
+    font-family: monoFont
+// ▲▲ 配置面板 ▲▲
 
+// ▼▼ 气泡 ▼▼
 .bubble
     padding: basePadding
     background: gray6
-    border-radius: baseRounded
+    border-radius: largeRounded
     margin-bottom: 20px
     flex-shrink: 0; // 禁止缩小
     align-self: flex-start; // 改为左对齐
@@ -132,11 +208,35 @@ input
     text-align: center
     font-weight: 400
 
-
 .bubble-name
     color: gray3
     font-weight: 400
+    margin-bottom: 5px
+    user-select: none
+// ▲▲ 气泡 ▲▲
 
+// ▼▼ 聊天面板 ▼▼
+.chat
+    display: flex
+    flex-direction: column
+    height: 460px
+    // overflow: scroll
+// ▲▲ 聊天面板 ▲▲
 
-.hidden
-    display: none
+// ▼▼ 信息流 ▼▼
+.chatline
+    display: flex
+    flex-direction: column
+    flex: 1
+    overflow-y: auto
+    padding: largePadding
+    padding-bottom: 0
+    & div:last-child
+        margin: 0
+// ▲▲ 信息流 ▲▲
+
+// ▼▼ 聊天输入框 ▼▼
+.input-message
+    padding: largePadding
+    margin-top: auto
+// ▲▲ 聊天输入框 ▲▲

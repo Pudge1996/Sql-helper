@@ -6,7 +6,7 @@ function InputMessage({ value, onChange }) {
   const { TextArea } = Input;
 
   return (
-    <div className="" style={{ marginTop: "0" }}>
+    <div className="input-message">
       <Form layout="vertical">
         <Form.Item>
           <TextArea
@@ -39,14 +39,14 @@ function Chat(props) {
   }, []);
 
   return (
-    <>
+    <div className="chat">
       <div className="chatline">
-        <ChatLine role="assistant" message="助手发送的消息，助手发送的消息，助手发送的消息，助手发送的消息，助手发送的消息。" />
+        <ChatLine role="assistant" message="助手发送的消息，助手发送的消息，助手发送的消息，助手发送的消息，助手发送的消息。助手发送的消息，助手发送的消息，助手发送的消息，助手发送的消息，助手发送的消息。助手发送的消息，助手发送的消息，助手发送的消息，助手发送的消息，助手发送的消息。助手发送的消息，助手发送的消息，助手发送的消息，助手发送的消息，助手发送的消息。助手发送的消息，助手发送的消息，助手发送的消息，助手发送的消息，助手发送的消息。助手发送的消息，助手发送的消息，助手发送的消息，助手发送的消息，助手发送的消息。助手发送的消息，助手发送的消息，助手发送的消息，助手发送的消息，助手发送的消息。助手发送的消息，助手发送的消息，助手发送的消息，助手发送的消息，助手发送的消息。助手发送的消息，助手发送的消息，助手发送的消息，助手发送的消息，助手发送的消息。助手发送的消息，助手发送的消息，助手发送的消息，助手发送的消息，助手发送的消息。" />
         <ChatLine role="user" message="我发送的消息" />
         <ChatLine role="system" message="一则系统通知" />
       </div>
       <InputMessage value={input} onChange={handleChangeInput} />
-    </>
+    </div>
   );
 }
 
