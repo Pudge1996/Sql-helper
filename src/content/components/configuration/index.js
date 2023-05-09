@@ -7,7 +7,6 @@ import { apiReqs } from '@/api'
 function MainModal(props) {
   const [text, setText] = useState(null);
   const [apiKey, setApiKey] = useState('');
-  const [form] = Form.useForm();
   const apiKeyRef = useRef('apiKeyInput');
   const textAreaRef = useRef('textAreaRef');
 
@@ -41,19 +40,18 @@ function MainModal(props) {
         
         // session_id: 'unique-session-id', // 设置 sessionId
         messages: [{
-          role: "user",
+          role: "system",
           content: formatTextPrompt(text),
         }],
-        temperature: 0.8, 
-        max_tokens: 100,
+        temperature: 0.7, // 0 ~ 1 越接近 1 越具有不确定性
+        max_tokens: 2048, // 
         // prompt: formatTextPrompt(text),
       },
       success: (res) => {
           console.log(res)
       },
       fail: (res) => {
-          console.log('res??',res)
-
+          console.log('fail',res)
           alert(res)
       },
     })
@@ -74,11 +72,6 @@ function MainModal(props) {
     `;
 
     return results.trim();
-  }
-
-
-  // TODO: 初始化 会话id
-  const initSession = () => {
   }
 
   // 保存API Key
