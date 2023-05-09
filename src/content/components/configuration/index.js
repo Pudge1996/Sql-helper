@@ -1,7 +1,8 @@
-import { useState, useRef } from "react";
-import { Button, Input, Form, Space, ConfigProvider } from "antd";
+
+import { useState, useRef, React} from "react";
+import { Button, Input, Form } from "antd";
 import { apiReqs } from '@/api'
-// import "./configuration.styl";
+
 
 function MainModal(props) {
   const [text, setText] = useState(null);
@@ -48,89 +49,53 @@ function MainModal(props) {
   const { TextArea } = Input;
 
   return (
-    <ConfigProvider
-      autoInsertSpaceInButton={false}
-      theme={{
-        token: {
-          colorPrimary: "#0064ff",
-          colorPrimaryHover: "#226AFF",
-          colorPrimaryActive: "#0032BE",
-          colorSuccess: "#00be5e",
-          colorWarning: "#ffaa33",
-          colorError: "#ff4433",
-          colorInfo: "#0064ff",
-          colorText: "#303030",
-          colorTextSecondary: "#606060",
-          colorTextTertiary: "#909090",
-          colorBorder: "#c7c7c7",
-          colorBgMask: "rgba(48, 48, 48, 0.5)",
-          borderRadius: 3,
-          sizeStep: 5,
-          sizeUnit: 5,
-          wireframe: false,
-        },
-      }}
-    >
-      <Space
-        direction="vertical"
-        size={20}
-        style={{ display: "flex" }}
-        className="main-content-con"
-      >
-        <Form layout="vertical">
-          <Space direction="vertical" size={10} style={{ display: "flex" }}>
-            <Form.Item label="Key & Value" htmlFor="key&value">
-              <TextArea
-                placeholder="粘贴 SQL 的 Key & Value"
-                id="key&value"
-                value={text}
-                onChange={handleIptChange}
-                bordered={false}
-                autoSize={{ minRows: 10, maxRows: 10 }}
-              />
-            </Form.Item>
-            <Form.Item>
-              <Button onClick={getModalList} type="primary" block={true} htmlType="submit">
-                保存
-              </Button>
-            </Form.Item>
-          </Space>
-        </Form>
 
-        <Form
-          form={form}
-          name="customApiKey"
-          layout="vertical"
-          size={10}
-          onFinish={setCustomApiKey}
-          onFinishFailed={onFinishFailed}
-          style={{ display: "flex", alignItems: "flex-end", gap: "10px" }}
+    <div className="configuration">
+      <Form layout="vertical" className="key-value">
+        {/* Key & Value 表单 */}
+        <Form.Item
+          label="Key & Value"
+          htmlFor="key&value"
+          style={{ flexGrow: "1", height: "100%" }}
         >
-          <Form.Item label="API Key" htmlFor="apiKey" style={{ width: "100%" }}              
-              rules={[
-                {
-                  required: true,
-                  message: '请输入 api-key ',
-                },
-              ]}>
-            <Input.Password
-              ref={refForm}
-              name="apiKey"
-              bordered={false}
-              className="api_key_input"
-              visibilityToggle={false}
-              placeholder="填入 API Key"
+          <TextArea
+            placeholder="粘贴 SQL 的 Key & Value"
+            id="key&value"
+            value={text}
+            onChange={handleIptChange}
+            bordered={false}
+          />
+        </Form.Item>
+        <Form.Item>
+          <Button onClick={getModalList} type="primary" block={true} htmlType="submit">
+            保存
+          </Button>
+        </Form.Item>
+      </Form>
 
-            />
-          </Form.Item>
-          <Form.Item>
-            <Button type="default" htmlType="submit" onSubmit={setCustomApiKeyOnsubmit}>
-              保存
-            </Button>
-          </Form.Item>
-        </Form>
-      </Space>
-    </ConfigProvider>
+      {/* API Key 表单 */}
+      <Form
+        layout="vertical"
+        size={10}
+        style={{ display: "flex", alignItems: "flex-end", gap: "10px" }}
+      >
+        <Form.Item label="API Key" htmlFor="apiKey" style={{ width: "100%" }}>
+          <Input.Password
+            ref={refForm}
+            name="apiKey"
+            bordered={false}
+            className="api_key_input"
+            visibilityToggle={false}
+            placeholder="sk-**********"
+          />
+        </Form.Item>
+        <Form.Item>
+          <Button type="default" htmlType="submit" onSubmit={setCustomApiKeyOnsubmit}>
+            保存
+          </Button>
+        </Form.Item>
+      </Form>
+    </div>
   );
 }
 
