@@ -65,6 +65,7 @@ function MainModal(props) {
       return `获取关键字“${keyword}”对应的 SQL 语句为‘${sql}’,`;
     });
     const results = `
+      你现在是一个通晓 SQL 和各种 DSL 专业助手，你需要根据自然语言生成 SQL 语句，
       下面会给你一个自定义的SQL规则，SQL规则关键字参考这个链接https://clickhouse.com/docs/zh/sql-reference/functions/arithmetic-functions，
       还有这个链接https://guide.ones.pro/wiki/#/team/LBrdb4wE/space/6XDAYB1a/page/2wHPDuJE中的SQL使用说明，等会我会基于自然语言要求你按照以下关键字对应的SQL语句来给我生成我需要的SQL
       ${keywordMappings.join('\n')}

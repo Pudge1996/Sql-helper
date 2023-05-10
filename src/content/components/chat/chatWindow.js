@@ -1,7 +1,8 @@
-import { useState, useImperativeHandle, forwardRef, useEffect } from 'react'
+import { useState, useImperativeHandle, forwardRef, useEffect, useRef } from 'react'
 import ChatLine from "./chatline";
 
 function ChatWindow(props, ref) {
+  const chatSelfRef = useRef(null);
   const testData = [
     {
       user: 'assistant',
@@ -26,9 +27,11 @@ function ChatWindow(props, ref) {
     }))
     useEffect(()=>{
         console.log(messages)
+        chatSelfRef.current.scrollTop = chatSelfRef.current.scrollHeight;
+
     },[messages])
   return (
-    <div className="chatline">
+    <div className="chatline" ref={chatSelfRef}>
       {messages.map((item, index) => (
         <ChatLine key={`${index}-${Math.random(100)}`} role={item.user} message={item.content} />
       ))}
