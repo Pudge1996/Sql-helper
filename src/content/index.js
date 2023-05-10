@@ -1,3 +1,4 @@
+/* global chrome */
 import { useState } from 'react'
 import ReactDOM from 'react-dom/client'
 import MainModal from './components/mainModal'
