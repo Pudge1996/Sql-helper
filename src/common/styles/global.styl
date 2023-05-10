@@ -13,13 +13,12 @@ html, body, #root
 .hidden
     display: none
 
-
 // 颜色
 gray1 = #16171A
 gray2 = #2B2C2F
 gray3 = #696A6D
 gray4 = #A8A8AA
-gray5 = #D1D2D4
+gray5 = #E7E7E9
 gray6 = #F0F0F2
 gray7 = #FBFBFD //背景色
 
@@ -38,7 +37,10 @@ baseRounded = 3px
 largeRounded = 8px
 
 baseRing = 0 0 0 2px white, 0 0 0 4.5px brand1
-ringTransition = box-shadow 0.06s ease
+ringTransition = 0.06s ease
+buttonTransition = color 0.06s, background-color 0.06s
+
+modalShadow = 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1)
 
 monoFont = ui-monospace, SFMono-Regular, "SF Mono", "Roboto Mono", Menlo, Consolas, "Liberation Mono", monospace
 
@@ -52,9 +54,11 @@ monoFont = ui-monospace, SFMono-Regular, "SF Mono", "Roboto Mono", Menlo, Consol
     padding-inline: 20px
     font-size: 16px
     margin: 0
+    transition: buttonTransition
 
     div
         display: none
+
     &:not(:disabled):focus-visible
         box-shadow: baseRing
         outline: none
@@ -65,11 +69,14 @@ monoFont = ui-monospace, SFMono-Regular, "SF Mono", "Roboto Mono", Menlo, Consol
     border: none
     background-color: gray6
     color: gray3
+    transition: buttonTransition
+
     &:hover
+        color: gray3 !important
+        background-color: gray5
+    &:active
         color: brand1 !important
         background-color: brand4
-    &:active
-        background-color: brand5
 // ▲▲ 按钮 ▲▲
 
 // ▼▼ Input ▼▼
@@ -110,13 +117,37 @@ input
 // ▼▼ 弹窗 ▼▼
 .ant-modal .ant-modal-content
     padding: 0
-    // height: 560px
-    // overflow: hidden
+    border-radius: largeRounded
+    // box-shadow: modalShadow
     .ant-modal-header
         margin: 0
         padding: largePadding
+        padding-top: 20px
+        padding-bottom: 10px
         text-align: center
         color: gray2
+.ant-modal .ant-modal-close // 关闭按钮
+    top: 16px
+    inset-inline-end: 16px
+    color: gray4
+    transition: buttonTransition
+    box-sizing: content-box
+    padding: 5px
+    &:hover
+        color: gray3
+        background-color: gray6
+        transition: buttonTransition
+    &:active
+        color: gray3
+        background-color: gray5
+        transition: buttonTransition
+    &:focus-visible
+        border-radius: baseRounded
+        box-shadow: baseRing
+        outline: none
+        transition: ringTransition
+        
+
 // ▲▲ 弹窗 ▲▲
 
 // 自制弹窗
@@ -124,8 +155,8 @@ input
 //     width: 60px
 //     height: 60px
 //     background: gray
-//     position: absolute;
-//     inset: 0;
+//     position: absolute
+//     inset: 0
 
 // ▼▼ Tab ▼▼
 .ant-tabs-top >.ant-tabs-nav
@@ -146,11 +177,12 @@ input
     z-index: 1
 
 .ant-tabs-nav // Tab 和底部描边
-    padding-bottom: 10px;
-    border-bottom: 1px solid gray6;
+    padding-bottom: 10px
+    border-bottom: 1px solid gray6
 
 .ant-tabs-nav-wrap // Tab 到容器左右的剪辑
     padding-inline: 15px
+    padding-block: 5px
 
 .ant-tabs .ant-tabs-tab[data-node-key="1"]
     margin-right: 5px !important
@@ -199,7 +231,7 @@ input
         flex-grow: 1
         gap: 10px
         textarea
-            resize: none;
+            resize: none
             height 100%
         .ant-form-item-row
             height: 100%
@@ -208,6 +240,24 @@ input
                 height: 100%
                 .ant-form-item-control-input-content
                     height: 100%
+
+@media (max-width: 575px) // 移除 Ant Design 默认垂直表单换行样式
+    .key-value-form>div
+        div
+            flex: none !important
+            width: 100%;
+        div:nth-child(2)
+            flex-grow: 1 !important
+            
+@media (max-width: 320px)
+    .api-key-form // 响应式适配：窄屏幕时换行
+        flex-direction: column
+        &>div:nth-child(2)
+            width: 100%
+            button
+                width: 100%
+
+
 .api_key_input 
     height: 42px
     padding: 0
@@ -220,10 +270,10 @@ input
     background: gray6
     border-radius: largeRounded
     margin-bottom: 20px
-    flex-shrink: 0; // 禁止缩小
-    align-self: flex-start; // 改为左对齐
-    max-width: 90%;
-    word-wrap: break-word;
+    flex-shrink: 0 // 禁止缩小
+    align-self: flex-start // 改为左对齐
+    max-width: 90%
+    word-wrap: break-word
     font-weight: 500
     & p:first-child // 聊天气泡的名字
         font-weight: 400
@@ -260,7 +310,7 @@ input
 // ▼▼ 信息流 ▼▼
 .chatline
     display: flex
-    flex-direction: column-reverse
+    flex-direction: column
     flex: 1
     overflow-y: auto
     padding: largePadding
@@ -271,5 +321,5 @@ input
 .input-message
     padding: largePadding
     margin-top: auto
-    border-top: 1px solid gray6;
+    border-top: 1px solid gray6
 // ▲▲ 聊天输入框 ▲▲
