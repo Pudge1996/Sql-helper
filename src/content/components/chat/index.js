@@ -80,7 +80,7 @@ function Chat() {
 
       },
       fail: (res) => {
-          console.log('fail',res)
+          console.log('查看错误消息',res)
       },
     })
   }
