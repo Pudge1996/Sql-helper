@@ -25,6 +25,9 @@ function MainModal(props) {
     },
   ];
 
+  // 弹窗的关闭图标
+  const customIcon = <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor"> <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" /> </svg>
+
   return (
     <ConfigProvider
       autoInsertSpaceInButton={false}
@@ -52,7 +55,7 @@ function MainModal(props) {
       <Modal
         className="CRX-mainModal"
         open={true}
-        title={"CRX对话框"}
+        title={"SQL-Helper"}
         footer={null}
         maskClosable={false}
         onCancel={() => {
@@ -61,6 +64,8 @@ function MainModal(props) {
         width={360}
         mask={false}
         centered
+        closeIcon={customIcon}
+        // transitionName=""
       >
         <Tabs
           defaultActiveKey="1"

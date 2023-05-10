@@ -90,6 +90,7 @@ function MainModal(props) {
         <Form.Item
           label="Key & Value"
           htmlFor="key&value"
+          className="key-value-form"
           style={{ flexGrow: "1", height: "100%" }}
         >
           <TextArea
@@ -113,6 +114,7 @@ function MainModal(props) {
         layout="vertical"
         size={10}
         style={{ display: "flex", alignItems: "flex-end", gap: "10px" }}
+        className="api-key-form"
       >
         <Form.Item label="API Key" htmlFor="apiKey" style={{ width: "100%" }}>
           <Input.Password
