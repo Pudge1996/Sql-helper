@@ -36,11 +36,12 @@ function InputMessage({ value, onChange }) {
 function Chat() {
   const [input, setInput] = useState("");
   const chatWindowRef = useRef();
+
   // 记忆化组件内的 onChange 方法，避免不必要的函数重建
   const handleChangeInput = (props) => {
     const {value, status} = props;
     console.log('onChange 参数最终', props)
-    if( status === "enter") {
+    if( status === "enter" & input !== "") {
       const message = {
         user: 'user',
         content: input
