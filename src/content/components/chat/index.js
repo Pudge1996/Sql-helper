@@ -39,7 +39,6 @@ function Chat() {
   // 记忆化组件内的 onChange 方法，避免不必要的函数重建
   const handleChangeInput = (props) => {
     const {value, status} = props;
-    console.log('onChange 参数最终', props)
     if( status === "enter" & input !== "") {
       const message = {
         role: 'user',
@@ -67,11 +66,21 @@ function Chat() {
         max_tokens: 2048, // 
       },
       success: (res) => {
-          console.log('看一下请求结果', res);
+        console.log('success',res.choices)
+        // TODO: 特殊错误处理
+        // if(res.error.type === 'server_error') {
+        //   chatWindowRef.current.addMessage({
+        //     role: 'system',
+        //     content: '服务器错误，请稍后再试'
+        //   })
+        // }
+        const message = res.choices[0].message;
+        console.log('看一下请求结果', res.choices[0].message);
+        chatWindowRef.current.addMessage(message);
+
       },
       fail: (res) => {
           console.log('fail',res)
-          alert(res)
       },
     })
   }
