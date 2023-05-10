@@ -38,7 +38,7 @@ baseRounded = 3px
 largeRounded = 8px
 
 baseRing = 0 0 0 2px white, 0 0 0 4.5px brand1
-shadowTransition = box-shadow 0.06s ease
+ringTransition = box-shadow 0.06s ease
 
 monoFont = ui-monospace, SFMono-Regular, "SF Mono", "Roboto Mono", Menlo, Consolas, "Liberation Mono", monospace
 
@@ -46,7 +46,7 @@ monoFont = ui-monospace, SFMono-Regular, "SF Mono", "Roboto Mono", Menlo, Consol
 
 // ▼▼ 按钮 ▼▼
 .ant-btn
-    transition: shadowTransition
+    transition: ringTransition
     box-shadow: none 
     height: 42px
     padding-inline: 20px
@@ -58,7 +58,7 @@ monoFont = ui-monospace, SFMono-Regular, "SF Mono", "Roboto Mono", Menlo, Consol
     &:not(:disabled):focus-visible
         box-shadow: baseRing
         outline: none
-        transition: shadowTransition
+        transition: ringTransition
 
 
 .ant-btn-default
@@ -79,13 +79,13 @@ monoFont = ui-monospace, SFMono-Regular, "SF Mono", "Roboto Mono", Menlo, Consol
 input
     background: gray6
     padding: basePadding
-    transition: shadowTransition
+    transition: ringTransition
     padding: basePadding !important
     
 .ant-input:focus
     box-shadow: baseRing
     border-radius: baseRounded
-    transition: shadowTransition
+    transition: ringTransition
 
 .ant-input::placeholder
     color: gray3 !important
@@ -112,13 +112,25 @@ input
     padding: 0
     // height: 560px
     // overflow: hidden
+    .ant-modal-header
+        margin: 0
+        padding: largePadding
+        text-align: center
+        color: gray2
 // ▲▲ 弹窗 ▲▲
+
+// 自制弹窗
+// .main-modal
+//     width: 60px
+//     height: 60px
+//     background: gray
+//     position: absolute;
+//     inset: 0;
 
 // ▼▼ Tab ▼▼
 .ant-tabs-top >.ant-tabs-nav
-    margin-bottom: 10px
-    padding-inline: 15px
-    margin-bottom: 0;
+    margin-bottom: 0px
+    // margin-inline: 15px
     color: gray3
 
 .ant-tabs-nav-list // 标签满宽度实现
@@ -132,14 +144,30 @@ input
 .ant-tabs-nav-list .ant-tabs-tab>div // Tab 文字
     font-size: 16px
     z-index: 1
-    
+
+.ant-tabs-nav // Tab 和底部描边
+    padding-bottom: 10px;
+    border-bottom: 1px solid gray6;
+
+.ant-tabs-nav-wrap // Tab 到容器左右的剪辑
+    padding-inline: 15px
+
+.ant-tabs .ant-tabs-tab[data-node-key="1"]
+    margin-right: 5px !important
+
+.ant-tabs .ant-tabs-tab[data-node-key="2"]
+    margin-left: 5px !important
+
 .ant-tabs .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn // 选中的 Tab，清除默认样式
     text-shadow: none
-    transition: none
+    transition: ringTransition
     font-weight: 500
     
-.ant-tabs-small >.ant-tabs-nav .ant-tabs-tab // tab 的尺寸
-    padding: 5px 0
+.ant-tabs-small >.ant-tabs-nav .ant-tabs-tab // 清除 tab 的尺寸
+    padding: 0px
+
+.ant-tabs-tab-btn // 添加 tab 的尺寸
+    padding: 5px
 
 .ant-tabs-top >.ant-tabs-nav::before // 清除底部灰色下划线
     display: none
@@ -150,6 +178,12 @@ input
     border-radius: largeRounded
     overflow: hidden
     padding: basePadding
+
+.ant-tabs .ant-tabs-tab-btn:focus-visible // 键盘聚焦 Tab 时
+    border-radius: baseRounded
+    box-shadow: baseRing
+    outline: none
+    transition: ringTransition
 // ▲▲ Tab ▲▲
 
 // ▼▼ 配置面板 ▼▼
@@ -226,17 +260,16 @@ input
 // ▼▼ 信息流 ▼▼
 .chatline
     display: flex
-    flex-direction: column
+    flex-direction: column-reverse
     flex: 1
     overflow-y: auto
     padding: largePadding
     padding-bottom: 0
-    & div:last-child
-        margin: 0
 // ▲▲ 信息流 ▲▲
 
 // ▼▼ 聊天输入框 ▼▼
 .input-message
     padding: largePadding
     margin-top: auto
+    border-top: 1px solid gray6;
 // ▲▲ 聊天输入框 ▲▲
