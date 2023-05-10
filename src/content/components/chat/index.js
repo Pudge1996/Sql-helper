@@ -1,9 +1,8 @@
 import { useState, useRef } from "react";
 import { Input, Form } from "antd";
-
 import ChatWindow from "./chatWindow";
-
-
+import { apiReqs } from  "@/api"
+/* global chrome */
 // TODO: 待抽离
 function InputMessage({ value, onChange }) {
   const { TextArea } = Input;
@@ -43,15 +42,39 @@ function Chat() {
     console.log('onChange 参数最终', props)
     if( status === "enter" & input !== "") {
       const message = {
-        user: 'user',
+        role: 'user',
         content: input
       }
       chatWindowRef.current.addMessage(message)
       // TODO: 调用接口
+      handlePostChat()
     }
     setInput(value);
-
   };
+
+  const handlePostChat = async () => {
+    let apiKey =  window.localStorage.getItem('apiKey');
+    const currentMessages = chatWindowRef.current.getMessages();
+    console.log('看看当前的currentMessages', currentMessages)
+    return apiReqs.postChat({
+      headers: {
+        Authorization: `Bearer ${apiKey}`
+      },
+      data: {
+        model: "gpt-3.5-turbo",
+        messages: [...currentMessages],
+        temperature: 0.7, // 0 ~ 1 越接近 1 越具有不确定性
+        max_tokens: 2048, // 
+      },
+      success: (res) => {
+          console.log('看一下请求结果', res);
+      },
+      fail: (res) => {
+          console.log('fail',res)
+          alert(res)
+      },
+    })
+  }
 
   return (
     <div className="chat">

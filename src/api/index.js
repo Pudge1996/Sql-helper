@@ -49,7 +49,9 @@ export const apiReqs = {
     },
     // 单个接口
     postCompletions: (config) => {
-
+        config.url = GPT_HOST + 'completions'
+        config.method = METHOD_TYPE.POST
+        apiFetch(config)
     },
     // 登录
     signIn: (config) => {
@@ -172,4 +174,58 @@ function sendRequestToBackground(config) {
     } else {
         console.log('未找到chrome API')
     }
+}
+
+// 获取本地存储数据
+export function getLocalStorage(keys, callback) {
+  if (chrome && chrome.runtime) {
+    chrome.runtime.sendMessage(
+      {
+        action: 'getLocalStorage',
+        keys: keys,
+      },
+      response => {
+        // 处理从后台脚本返回的本地存储数据
+        callback(response);
+      }
+    );
+  } else {
+    console.log('未找到 chrome API');
+  }
+}
+
+// 本地存储数据
+export function setLocalStorage(keys, callback) {
+  if (chrome && chrome.runtime) {
+    chrome.runtime.sendMessage(
+      {
+        action: 'setLocalStorage',
+        keys: keys,
+      },
+      response => {
+        // 处理从后台脚本返回的本地存储数据
+        callback(response);
+      }
+    );
+  } else {
+    console.log('未找到 chrome API');
+  }
+}
+
+// 移除本地存储数据
+export function removeLocalStorage(keys, callback) {
+  if (chrome && chrome.runtime) {
+    chrome.runtime.sendMessage(
+      {
+        action: 'removeLocalStorage',
+        keys: keys,
+      },
+      response => {
+        // 处理从后台脚本返回的本地存储数据
+        callback(response);
+      }
+    );
+  } else {
+    console.log('未找到 chrome API');
+  }
 }

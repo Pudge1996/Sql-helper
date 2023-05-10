@@ -60,9 +60,42 @@ chrome.runtime.onInstalled.addListener(function () {
                     // 发起请求
                     apiRequest(config)
                 }
+
             }
         )
+        if(request.action === 'getLocalStorage') {
+            // 获取本地存储数据
+            chrome.storage.local.get(request.keys, result => {
+                // 将结果发送回内容脚本
+                sendResponse(result);
+            });
+        } else if(request.action === 'setLocalStorage') {
+            // 本地存储数据
+            chrome.storage.local.set(request.keys, result => {
+                // 将结果发送回内容脚本
+                sendResponse(result);
+            });
+        } else if(request.action === 'removeLocalStorage') {
+            // 移除本地存储数据
+            chrome.storage.local.remove(request.keys, result => {
+                // 将结果发送回内容脚本
+                sendResponse(result);
+            });
+        }
+
         return true
     })
 })
 
+// // 监听来自内容脚本的消息
+// chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+//   if (message.action === 'getLocalStorage') {
+//     // 获取本地存储数据
+//     chrome.storage.local.get(message.keys, result => {
+//       // 将结果发送回内容脚本
+//       sendResponse(result);
+//     });
+//     // 返回 true 以确保 sendResponse 在异步调用中保持有效
+//     return true;
+//   }
+// });

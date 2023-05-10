@@ -1,8 +1,7 @@
 
 import { useState, useRef, React} from "react";
 import { Button, Input, Form } from "antd";
-import { apiReqs } from '@/api'
-
+import { apiReqs, setLocalStorage } from '@/api'
 
 function MainModal(props) {
   const [text, setText] = useState(null);
@@ -29,8 +28,6 @@ function MainModal(props) {
     //     },
     // })
     const text = textAreaRef.current.resizableTextArea.textArea.value;
-    console.log("kankan text",apiKey)
-    // return
     apiReqs.postChat({
       headers: {
         Authorization: `Bearer ${apiKey}`
@@ -77,7 +74,12 @@ function MainModal(props) {
 
   // 保存API Key
   const setCustomApiKey = (e) => {
-    setApiKey(apiKeyRef.current.input.value)
+    const apiKey = apiKeyRef.current.input.value;
+    setApiKey(apiKey)
+    window.localStorage.setItem('apiKey', apiKey);
+    // setLocalStorage({apiKey}, (res) => {
+    //   console.log('检验保持情况', res)
+    // })
   };
   // 文本域
   const { TextArea } = Input;
