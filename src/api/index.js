@@ -32,13 +32,25 @@ export const API_FAILED = '网络连接异常，请稍后再试'
 
 // API请求汇总
 export const apiReqs = {
-
+    // 获取模型列表
     getModalList: (config) => {
         config.url = GPT_HOST + 'models'
         config.method = METHOD_TYPE.GET
         apiFetch(config)
-    }
-    ,
+    },
+    /* 
+     * @desc获取聊天信息
+     * @params modal:string messages:array
+     */
+    postChat: (config) => {
+        config.url = GPT_HOST + 'chat/completions'
+        config.method = METHOD_TYPE.POST
+        apiFetch(config)
+    },
+    // 单个接口
+    postCompletions: (config) => {
+
+    },
     // 登录
     signIn: (config) => {
         config.url = API_DOMAIN + 'login/'
@@ -110,7 +122,7 @@ export function apiRequest(config) {
     // 准备好请求的全部数据
     let axiosConfig = {
         method: config.method,
-        headers: {...headers, ...config.headers}, // TODO: 暴露 "Authorization: Bearer $OPENAI_API_KEY"
+        headers: {...headers, ...config.headers},
     }
     if (config.method !== METHOD_TYPE.GET) {
         const body = data;
