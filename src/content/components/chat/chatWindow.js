@@ -31,7 +31,7 @@ function ChatWindow(props, ref) {
 
     },[messages])
   return (
-    <div className="chatline" ref={chatSelfRef}>
+      <div className="chatline" ref={chatSelfRef}>
       {messages.map((item, index) => (
         <ChatLine key={`${index}-${Math.random(100)}`} role={item.role} message={item.content} />
       ))}
