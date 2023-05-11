@@ -94,7 +94,7 @@ function App() {
         id="rootModal"
         // closeIcon={customIcon} 这个也得传进来，很关键
         zIndex="99999"
-        wrapClassName="root-modal-wrap"
+        wrapClassName="M-root-modal-wappers"
       >
         <Tabs
           defaultActiveKey="1"

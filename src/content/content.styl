@@ -10,10 +10,6 @@
         background: url('images/icon.png')
         background-size: 100% 100%
         cursor: pointer
-.ant-modal-wrap.root-modal-wrap // 自定义类名
-    width: 360px !important
-    height: 590px !important
-    overflow: visible !important
 html, body, #root
     height: 100%
     line-height: 1.2
@@ -59,16 +55,10 @@ baseRing = 0 0 0 2px white, 0 0 0 4.5px brand1
 ringTransition = 0.06s ease
 buttonTransition = color 0.06s, background-color 0.06s
 
-modalShadow = 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1)
-
 monoFont = ui-monospace, SFMono-Regular, "SF Mono", "Roboto Mono", Menlo, Consolas, "Liberation Mono", monospace
 
 // ▼▼ 通用 ▼▼
-// *:focus-visible //排查问题
-//     outline: 2px red solid !important
-
-// ▼▼ 通用 ▼▼
-.P-configuration, .P-chat
+div.P-configuration, div.P-chat
     background: white
     // 按钮
     .ant-btn
@@ -152,7 +142,13 @@ monoFont = ui-monospace, SFMono-Regular, "SF Mono", "Roboto Mono", Menlo, Consol
 // ▲▲ 通用 ▲▲
 
 // ▼▼ 弹窗 ▼▼
-div.M-root-modal
+div.M-root-modal-wappers // 包裹弹窗的容器，设置大小 = 弹窗大小，防止影响背景元素点击
+    width: 360px !important
+    height: 566px !important
+    overflow: visible !important
+div.M-root-modal // 弹窗
+    padding-bottom: 0
+    top: 0
     .ant-modal-content
         padding: 0 
         border-radius: largeRounded
@@ -188,11 +184,8 @@ div.M-root-modal
                 padding-bottom: 10px
             .ant-modal-title // 移除默认的 Padding
                 padding: 0 
-
-.ant-modal-root .ant-modal-wrap, .ant-modal-wrap.root-modal-wrap // 自定义类名
-    width: 360px
-    height: 590px
 // ▲▲ 弹窗 ▲▲
+
 // ▼▼ Tab ▼▼
 div.M-tabs
     .ant-tabs-nav // Tab 和底部描边
@@ -303,6 +296,8 @@ div.P-configuration
         border: none
     input#apiKey::placeholder
         color: gray3 !important
+// ▲▲ 配置面板 ▲▲
+
 // ▼▼ 聊天面板 ▼▼
 div.P-chat
     display: flex
@@ -409,7 +404,7 @@ div.P-chat
             transition: height .2s
             resize: none
             border: none
-    // .chatline
+    // .chatline //解开后能看到气泡出现的动画效果。有个问题是在输入框每输入一个字母，动画就会重复一次，是onChange的问题还是样式的问题
     //     .bubble-right:last-child 
     //         animation: bubbleRightShow .2s ease
     //         @keyframes bubbleRightShow 
@@ -437,3 +432,4 @@ div.P-chat
     //             to
     //                 opacity: 1
     //                 transform: translate(0px, 0px) scale(1)
+// ▲▲ 聊天面板 ▲▲
