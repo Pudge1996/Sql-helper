@@ -122,6 +122,7 @@ function MainModal(props) {
           <Input.Password
             ref={apiKeyRef}
             name="apiKeyInput"
+            id="apiKey"
             bordered={false}
             className="api_key_input"
             visibilityToggle={false}
