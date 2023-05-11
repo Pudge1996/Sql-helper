@@ -1,12 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import { Modal, Tabs } from "antd";
 import Configuration from "../configuration";
 import Chat from "../chat";
 import BuildDragTitle from "../dragTitle";
 
-
 function ContentModal(props) {
   const { setVisible, visible } = props;
+  const [sharedData, setSharedData] = useState({});
+
+  // 更新数据的函数
+  const updateSharedData = (newValue) => {
+    setSharedData(newValue);
+  };
+
   const setVisibleHandler = () => {
     setVisible(false);
   }
@@ -17,12 +23,12 @@ function ContentModal(props) {
     {
       key: "1",
       label: `聊天`,
-      children: <Chat />,
+      children: <Chat promptData={sharedData}/>,
     },
     {
       key: "2",
       label: `配置`,
-      children: <Configuration />,
+      children: <Configuration updateData={updateSharedData}/>,
     },
   ];
 

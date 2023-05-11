@@ -45,6 +45,4 @@ export default function BuildDragTitle(props) {
     </DragM>
     </ConfigProvider>
   );
-
-  // 弹窗的关闭图标
 }

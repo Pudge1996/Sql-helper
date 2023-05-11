@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Input, Form } from "antd";
 import ChatWindow from "./chatWindow";
 import { apiReqs } from  "@/api"
@@ -37,10 +37,11 @@ function InputMessage({ value, onChange }) {
   );
 }
 
-function Chat() {
+function Chat(props) {
+  const { promptData } = props;
   const [input, setInput] = useState("");
   const chatWindowRef = useRef();
-
+  
   // 记忆化组件内的 onChange 方法，避免不必要的函数重建
   const handleChangeInput = (props) => {
     const {value, status} = props;
@@ -55,11 +56,21 @@ function Chat() {
     }
     setInput(value);
   };
+  useEffect(() => {
+    // let _prompt = window.localStorage.getItem('prompt');
+    // console.log('chat index useEffect', _prompt)
+    // if(_prompt) {
+      console.log('看看prompt', promptData);
+      chatWindowRef.current.initMessages(promptData)
+    // }
+
+  },[promptData])
 
   const handlePostChat = async () => {
     let apiKey =  window.localStorage.getItem('apiKey');
+
     const currentMessages = chatWindowRef.current.getMessages();
-    console.log('看看当前的currentMessages', currentMessages)
+    console.log('查看当前聊天数据列表', currentMessages)
     return apiReqs.postChat({
       headers: {
         Authorization: `Bearer ${apiKey}`
