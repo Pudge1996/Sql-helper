@@ -41,7 +41,8 @@ function BuildTitle(props) {
         },
       }}
     >
-    <DragM  updateTransform={updateTransform}>
+
+    <DragM  updateTransform={updateTransform} >
       <div>{props.title}</div>
     </DragM>
     </ConfigProvider>
@@ -91,6 +92,8 @@ function App() {
         width={360}
         className="root-modal"
         // closeIcon={customIcon} 这个也得传进来，很关键
+        zIndex="99999"
+        wrapClassName="root-modal-wrap"
       >
         <Tabs
           defaultActiveKey="1"
