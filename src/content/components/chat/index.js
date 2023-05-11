@@ -91,7 +91,7 @@ function Chat() {
   }
 
   return (
-    <div className="chat">
+    <div className="P-chat">
       <ChatWindow ref={chatWindowRef}/>
       <InputMessage value={input} onChange={handleChangeInput} />
     </div>
