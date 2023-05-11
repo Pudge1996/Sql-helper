@@ -287,44 +287,49 @@ input
     font-weight: 500
     & p:first-child // 聊天气泡的名字
         font-weight: 400
-    animation: bubbleLeftShow .2s ease
-    @keyframes bubbleLeftShow 
-        from
-            opacity: 0
-            transform: translate(-10px, 15px) scale(0.96)
-        to
-            opacity: 1
-            transform: translate(0px, 0px) scale(1)
 
 .bubble-right // User 的聊天气泡
   align-self: flex-end
   background: brand4
-  animation: bubbleRightShow .2s ease
-//   @keyframes bubbleRightShow 
-//         from
-//             opacity: 0.5
-//             transform: translate(10px, 15px) scale(0.96)
-//         to
-//             opacity: 1
-//             transform: translate(0px, 0px) scale(1)
   &>p
     font-weight: 400
 
 .bubble-center // System 的聊天气泡
     width: 100%
     max-width: 100%
-    // color: warning1
     background-color: warning2
     text-align: center
     font-weight: 400
-    // animation: bubbleCenterShow .2s ease
-    // @keyframes bubbleCenterShow 
-    //     from
-    //         opacity: 0.5
-    //         transform: translateY(15px) scale(0.96)
-    //     to
-    //         opacity: 1
-    //         transform: translateY(0px) scale(1)
+
+// .chatline
+//     .bubble-right:last-child 
+//         animation: bubbleRightShow .2s ease
+//         @keyframes bubbleRightShow 
+//                 from
+//                     opacity: 0.5
+//                     transform: translate(10px, 15px) scale(0.96)
+//                 to
+//                     opacity: 1
+//                     transform: translate(0px, 0px) scale(1)
+//     .bubble-center:last-child 
+//         animation: bubbleCenterShow .2s ease
+//         @keyframes bubbleCenterShow 
+//             from
+//                 opacity: 0.5
+//                 transform: translateY(15px) scale(0.96)
+//             to
+//                 opacity: 1
+//                 transform: translateY(0px) scale(1)
+//     .bubble-left:last-child 
+//         animation: bubbleLeftShow .2s ease
+//         @keyframes bubbleLeftShow 
+//             from
+//                 opacity: 0
+//                 transform: translate(-10px, 15px) scale(0.96)
+//             to
+//                 opacity: 1
+//                 transform: translate(0px, 0px) scale(1)
+
 
 .bubble-name
     color: gray3
