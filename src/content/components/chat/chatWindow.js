@@ -5,16 +5,8 @@ function ChatWindow(props, ref) {
   const chatSelfRef = useRef(null);
   const testData = [
     {
-      role: 'assistant',
-      content: '助手发送的消息，助手发送的消息，助手发送的消息，助手发送的消息，助手发送的消息。助手发送的消息，助手发送的消息，助手发送的消息，助手发送的消息，助手发送的消息。助手发送的消息，'
-    },
-    {
-      role: 'user',
-      content: '我发送的消息'
-    },
-    {
       role: 'system',
-      content: '这是一则系统消息'
+      content: '欢迎使用 ONES Sql-helper 在使用前请在配置页初始化prompt,以便更好生成相应内容'
     }
   ]
   const [messages, setMessages] = useState([...testData]);

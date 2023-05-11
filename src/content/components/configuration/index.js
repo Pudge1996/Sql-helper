@@ -34,13 +34,14 @@ function ConfigurationWindow(props) {
       const [keyword, sql] = line.split('\t');
       return `获取关键字“${keyword}”对应的 SQL 语句为‘${sql}’,`;
     });
-    const results = `
-      你现在是一个通晓SQL的专业助手，你需要根据自然语言生成SQL语句，
-      下面会给你一个自定义的SQL规则，SQL规则关键字参考这个链接 https://clickhouse.com/docs/zh/sql-reference/functions/arithmetic-functions ，
-      还有这个链接 https://guide.ones.pro/wiki/#/team/LBrdb4wE/space/6XDAYB1a/page/2wHPDuJE 
-      你需要根据我上面两个链接中的SQL使用规则提供自然语言对应的sql给我，等会我会基于自然语言要求你按照以下关键字对应的SQL语句来给我生成我需要的SQL
-      ${keywordMappings.join('\n')}
-      接下来的对话中我需要的SQL语句请按照以上映射规则告诉我，更详细规则参考以下链接：https://clickhouse.com/docs/zh/sql-reference/functions/arithmetic-functions https://guide.ones.pro/wiki/#/team/LBrdb4wE/space/6XDAYB1a/page/2wHPDuJE
+    const preSetText = `你现在是一个通晓SQL的专业助手，你需要根据自然语言生成SQL语句，下面会给你一个自定义的SQL规则，SQL的规则和对应关键字参考这个链接`
+    const results = `${preSetText}
+       https://clickhouse.com/docs/zh/sql-reference/functions/arithmetic-functions 和
+       https://guide.ones.pro/wiki/#/team/LBrdb4wE/space/6XDAYB1a/page/2wHPDuJE 这两个链接，
+      给我的回答可以参考这两个链接，你需要根据我上面两个链接中的SQL使用规则提供自然语言对应的sql给我，等会我会基于自然语言要求你按照以下关键字对应的SQL语句来给我生成我需要的SQL，
+      我的自然语言与SQL映射关系如下：
+      ${keywordMappings.join('\n')};
+      接下来的对话中我将通过自然语言向你提问，你只需要返回与此相关的SQL语句给我即可。
     `;
 
     return results.trim();
