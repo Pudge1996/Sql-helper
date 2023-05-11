@@ -21,7 +21,10 @@ function ChatWindow(props, ref) {
 
     useImperativeHandle(ref, () => ({
         addMessage: (message) => {
-            setMessages([...messages, message]);
+          setMessages([...messages, message]);
+        },
+        initMessages: (messages) => {
+          setMessages([messages]);
         },
         getMessages: () => messages
     }))

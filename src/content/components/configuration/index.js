@@ -3,7 +3,9 @@ import { useState, useRef, React} from "react";
 import { Button, Input, Form } from "antd";
 import { apiReqs, setLocalStorage } from '@/api'
 
-function MainModal(props) {
+function ConfigurationWindow(props) {
+
+  const { updateData } = props;
   const [text, setText] = useState(null);
   const [apiKey, setApiKey] = useState('');
   const apiKeyRef = useRef('apiKeyInput');
@@ -14,59 +16,31 @@ function MainModal(props) {
     setText(e.target.value);
   };
 
-  // TODO: 初始化是否需要把数据模板格式后存入 local, 然后在chat 的时候再取出来
-  const postInitPrompt = () => {
-    // apiReqs.getModalList({ 
-    //     headers: {
-    //       Authorization: `Bearer ${apiKey}`
-    //     },
-    //     success: (res) => {
-    //         console.log(res)
-    //     },
-    //     fail: (res) => {
-    //         alert(res)
-    //     },
-    // })
+  const presetPrompt = () => {
+    // console.log('????', textAreaRef)
+    // return
     const text = textAreaRef.current.resizableTextArea.textArea.value;
-    apiReqs.postChat({
-      headers: {
-        Authorization: `Bearer ${apiKey}`
-      },
-      data: {
-        model: "gpt-3.5-turbo",
-        
-        // session_id: 'unique-session-id', // 设置 sessionId
-        messages: [{
-          role: "system",
-          content: formatTextPrompt(text),
-        }],
-        temperature: 0.7, // 0 ~ 1 越接近 1 越具有不确定性
-        max_tokens: 2048, // 
-        // prompt: formatTextPrompt(text),
-      },
-      success: (res) => {
-          console.log(res)
-      },
-      fail: (res) => {
-          console.log('fail',res)
-          alert(res)
-      },
-    })
-  };
+    const prompt = {
+      role: 'user',
+      content: formatTextPrompt(text),
+    }
+    updateData(prompt); // 传值到 chat
+    window.localStorage.setItem('prompt', JSON.stringify(prompt));
+  }
 
-
-  function formatTextPrompt(text) {
+  const formatTextPrompt = (text) => {
     const lines = text.trim().split('\n');
     const keywordMappings = lines.map(line => {
       const [keyword, sql] = line.split('\t');
       return `获取关键字“${keyword}”对应的 SQL 语句为‘${sql}’,`;
     });
     const results = `
-      你现在是一个通晓 SQL 和各种 DSL 专业助手，你需要根据自然语言生成 SQL 语句，
-      下面会给你一个自定义的SQL规则，SQL规则关键字参考这个链接https://clickhouse.com/docs/zh/sql-reference/functions/arithmetic-functions，
-      还有这个链接https://guide.ones.pro/wiki/#/team/LBrdb4wE/space/6XDAYB1a/page/2wHPDuJE中的SQL使用说明，等会我会基于自然语言要求你按照以下关键字对应的SQL语句来给我生成我需要的SQL
+      你现在是一个通晓SQL的专业助手，你需要根据自然语言生成SQL语句，
+      下面会给你一个自定义的SQL规则，SQL规则关键字参考这个链接 https://clickhouse.com/docs/zh/sql-reference/functions/arithmetic-functions ，
+      还有这个链接 https://guide.ones.pro/wiki/#/team/LBrdb4wE/space/6XDAYB1a/page/2wHPDuJE 
+      你需要根据我上面两个链接中的SQL使用规则提供自然语言对应的sql给我，等会我会基于自然语言要求你按照以下关键字对应的SQL语句来给我生成我需要的SQL
       ${keywordMappings.join('\n')}
-      之后我需要的SQL语句请按照以上映射规则告诉我，更详细规则参考以下链接：https://clickhouse.com/docs/zh/sql-reference/functions/arithmetic-functions https://guide.ones.pro/wiki/#/team/LBrdb4wE/space/6XDAYB1a/page/2wHPDuJE
+      接下来的对话中我需要的SQL语句请按照以上映射规则告诉我，更详细规则参考以下链接：https://clickhouse.com/docs/zh/sql-reference/functions/arithmetic-functions https://guide.ones.pro/wiki/#/team/LBrdb4wE/space/6XDAYB1a/page/2wHPDuJE
     `;
 
     return results.trim();
@@ -106,7 +80,7 @@ function MainModal(props) {
           />
         </Form.Item>
         <Form.Item>
-          <Button onClick={postInitPrompt} type="primary" block={true} htmlType="submit">
+          <Button onClick={() => presetPrompt()} type="primary" block={true} htmlType="submit">
             保存
           </Button>
         </Form.Item>
@@ -140,4 +114,4 @@ function MainModal(props) {
   );
 }
 
-export default MainModal;
+export default ConfigurationWindow;
