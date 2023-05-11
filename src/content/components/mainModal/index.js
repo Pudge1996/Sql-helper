@@ -1,32 +1,21 @@
+import React, { useState, useRef, useEffect } from "react";
 import { Modal, ConfigProvider, Tabs } from "antd";
 import Configuration from "../configuration";
 import Chat from "../chat";
+import DragM from "dragm";
 // import { apiReqs } from '@/api'
-import "./mainModal.styl";
 
-function MainModal(props) {
-  // 接收父组件控制本组件关闭的方法
-  const { onClose } = props;
+function BuildTitle(props) {
+  const [modalDom, setModalDom] = useState(null);
 
-  // Tabs
-  const onChange = (key) => {
-    console.log(key);
+  const updateTransform = transformStr => {
+    modalDom.style.transform = transformStr;
   };
-  const items = [
-    {
-      key: "1",
-      label: `聊天`,
-      children: <Chat />,
-    },
-    {
-      key: "2",
-      label: `配置`,
-      children: <Configuration />,
-    },
-  ];
 
-  // 弹窗的关闭图标
-  const customIcon = <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor"> <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" /> </svg>
+  useEffect(() => {
+    const modalElement = document.getElementsByClassName("ant-modal-wrap")[0];
+    setModalDom(modalElement);
+  }, []);
 
   return (
     <ConfigProvider
@@ -52,33 +41,67 @@ function MainModal(props) {
         },
       }}
     >
+    <DragM  updateTransform={updateTransform}>
+      <div>{props.title}</div>
+    </DragM>
+    </ConfigProvider>
+  );
+
+  // 弹窗的关闭图标
+  const customIcon = <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor"> <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" /> </svg>
+}
+
+function App() {
+  // Tabs
+  const items = [
+    {
+      key: "1",
+      label: `聊天`,
+      children: <Chat />,
+    },
+    {
+      key: "2",
+      label: `配置`,
+      children: <Configuration />,
+    },
+  ];
+
+  const [visible, setVisible] = useState(false);
+
+  const showModal = () => {
+    setVisible(true);
+  };
+
+  const handleCancel = e => {
+    setVisible(false);
+  };
+  
+
+  const title = <BuildTitle visible={visible} title="Modal Title" />;
+
+  return (
       <Modal
-        className="CRX-mainModal"
+        title={title}
         open={true}
-        title={"SQL-Helper"}
-        footer={null}
-        maskClosable={false}
-        onCancel={() => {
-          onClose && onClose();
-        }}
-        width={360}
+        visible={visible}
         mask={false}
-        centered
-        closeIcon={customIcon}
-        // transitionName=""
+        onOk={() => setVisible(false)}
+        onCancel={handleCancel}
+        footer={false}
+        width={360}
+        className="root-modal"
+        // closeIcon={customIcon} 这个也得传进来，很关键
       >
         <Tabs
           defaultActiveKey="1"
           items={items}
           centered
-          onChange={onChange}
           size="small"
           tabBarGutter="0"
           animated={{ inkBar: true, tabPane: false }}
         />
       </Modal>
-    </ConfigProvider>
   );
 }
 
-export default MainModal;
+export default App;

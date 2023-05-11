@@ -32,6 +32,7 @@ warning1 = #FFAA33
 warning2 = #FFF7C8
 
 basePadding = 10px 15px
+smallPadding = 5px 15px
 largePadding = 15px 15px 20px
 baseRounded = 3px
 largeRounded = 8px
@@ -115,17 +116,28 @@ input
 // ▲▲ 通用 ▲▲
 
 // ▼▼ 弹窗 ▼▼
+.ant-modal-wrap
+    pointer-events: none !important
+    z-index 9999 !important
+#CRX-container ~ div, #CRX-container ~ div.ant-modal-root, #CRX-container ~ div.ant-modal-wrap
+    z-index: 9999 !important
+    position: fixed !important
+
 .ant-modal .ant-modal-content
     padding: 0
     border-radius: largeRounded
-    // box-shadow: modalShadow
     .ant-modal-header
         margin: 0
-        padding: largePadding
-        padding-top: 20px
-        padding-bottom: 10px
+        padding: 0
         text-align: center
         color: gray2
+        div
+            padding: largePadding
+            padding-top: 20px
+            padding-bottom: 10px
+.ant-modal-title // 移除默认的 Padding
+    padding: 0 !important
+
 .ant-modal .ant-modal-close // 关闭按钮
     top: 16px
     inset-inline-end: 16px
@@ -177,7 +189,7 @@ input
     z-index: 1
 
 .ant-tabs-nav // Tab 和底部描边
-    padding-bottom: 10px
+    padding-bottom: 5px
     border-bottom: 1px solid gray6
 
 .ant-tabs-nav-wrap // Tab 到容器左右的剪辑
@@ -232,7 +244,7 @@ input
         gap: 10px
         textarea
             resize: none
-            height 100%
+            height 100% !important
         .ant-form-item-row
             height: 100%
         .ant-form-item-control
@@ -240,7 +252,6 @@ input
                 height: 100%
                 .ant-form-item-control-input-content
                     height: 100%
-
 @media (max-width: 575px) // 移除 Ant Design 默认垂直表单换行样式
     .key-value-form>div
         div
@@ -248,6 +259,8 @@ input
             width: 100%;
         div:nth-child(2)
             flex-grow: 1 !important
+        textarea
+            height: 100% !important
             
 @media (max-width: 320px)
     .api-key-form // 响应式适配：窄屏幕时换行
@@ -304,7 +317,6 @@ input
     display: flex
     flex-direction: column
     height: 460px
-    // overflow: scroll
 // ▲▲ 聊天面板 ▲▲
 
 // ▼▼ 信息流 ▼▼
@@ -322,4 +334,64 @@ input
     padding: largePadding
     margin-top: auto
     border-top: 1px solid gray6
+    height: 140px
+    display: flex
+    flex-direction: column
+    gap: 10px
+    transition: height .2s
+    // ▼▼ 提交信息后的 loading ▼▼
+    .message-loading
+        padding: smallPadding
+        display: flex
+        color: brand1
+        border-radius: baseRounded
+        font-size: 13px
+        background: brand4
+        color: brand
+        align-items: center
+        gap: 5px
+        user-select: none
+        .message-loading-spin
+            width: 15px
+            height: 15px
+            animation-name: spin
+            animation-duration: .3s
+            animation-timing-function: linear
+            animation-iteration-count: infinite
+            svg
+                fill: brand1
+            @keyframes spin 
+                from
+                    transform: rotate(0deg)
+                to
+                    transform: rotate(360deg)
+        
+    // ▲▲ 提交信息后的 loading ▲▲
+    // ▼▼ 输入框动态高度 ▼▼
+    form
+        flex-grow: 1
+        display: flex
+        flex-direction: column
+        min-height: 0
+        transition: height .2s
+
+        div
+            flex-grow: 1
+            display: flex
+            flex-direction: column
+            transition: height .2s
+
+            div
+                flex-grow: 1
+                display: flex
+                flex-direction: column  
+                width: 100%
+                min-height: 0
+                transition: height .2s
+    textarea
+        height: 100%
+        transition: height .2s
+        resize: none
+    // ▲▲ 输入框动态高度 ▲▲
+
 // ▲▲ 聊天输入框 ▲▲
