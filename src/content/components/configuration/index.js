@@ -14,7 +14,7 @@ function MainModal(props) {
     setText(e.target.value);
   };
 
-  // 提交
+  // TODO: 初始化是否需要把数据模板格式后存入 local, 然后在chat 的时候再取出来
   const postInitPrompt = () => {
     // apiReqs.getModalList({ 
     //     headers: {
