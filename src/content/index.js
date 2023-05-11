@@ -6,24 +6,23 @@ import './content.styl'
 // 从插件中拿资源，这样避免src中资源打成base64
 // const iconUrl = chrome.runtime.getURL('/images/icon.png');
 
+
 function Content() {
-    const [mainModalVisiable, setMainModalVisiable] = useState(false)
+    const [mainModalVisible, setMainModalVisible] = useState(false)
+
     return (
         <div className="CRX-content">
             <div
                 className="content-entry"
                 // style={{backgroundImage: `url(${iconUrl})`}}
                 onClick={() => {
-                    setMainModalVisiable(true)
+                    setMainModalVisible(true)
                 }}
             ></div>
-            {mainModalVisiable ? (
-                <MainModal
-                    onClose={() => {
-                        setMainModalVisiable(false)
-                    }}
-                />
-            ) : null}
+            <MainModal
+                visible={mainModalVisible}
+                setVisible={setMainModalVisible}
+            />
         </div>
     )
 }

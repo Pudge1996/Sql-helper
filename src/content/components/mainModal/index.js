@@ -13,6 +13,7 @@ function BuildTitle(props) {
   };
 
   useEffect(() => {
+    console.log('modalDom useEffect');
     const modalElement = document.getElementsByClassName("ant-modal-wrap")[0];
     setModalDom(modalElement);
   }, []);
@@ -52,7 +53,13 @@ function BuildTitle(props) {
   const customIcon = <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor"> <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" /> </svg>
 }
 
-function App() {
+function ContentModal(props) {
+  const { setVisible, visible } = props;
+  const setVisibleHandler = () => {
+    setVisible(false);
+  }
+
+  console.log(props);
   // Tabs
   const items = [
     {
@@ -67,27 +74,14 @@ function App() {
     },
   ];
 
-  const [visible, setVisible] = useState(false);
-
-  const showModal = () => {
-    setVisible(true);
-  };
-
-  const handleCancel = e => {
-    setVisible(false);
-  };
-  
-
-  const title = <BuildTitle visible={visible} title="Modal Title" />;
-
   return (
       <Modal
-        title={title}
-        open={true}
+        title={<BuildTitle visible={visible} title="ONES Sql-helper" />}
         visible={visible}
         mask={false}
-        onOk={() => setVisible(false)}
-        onCancel={handleCancel}
+        onCancel={() => {
+          setVisibleHandler()
+        }}
         footer={false}
         width={360}
         className="M-root-modal"
@@ -109,4 +103,4 @@ function App() {
   );
 }
 
-export default App;
+export default ContentModal;
