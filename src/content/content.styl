@@ -10,3 +10,426 @@
         background: url('images/icon.png')
         background-size: 100% 100%
         cursor: pointer
+html, body, #root
+    height: 100%
+    line-height: 1.2
+// 清除浮动
+.clearfix:after
+    content: '.'
+    display: block
+    height: 0
+    clear: both
+    visibility: hidden
+.clearfix
+    display: block
+.hidden
+    display: none
+
+// 颜色
+gray1 = #16171A
+gray2 = #2B2C2F
+gray3 = #696A6D
+gray4 = #A8A8AA
+gray5 = #E7E7E9
+gray6 = #F0F0F2
+gray7 = #FBFBFD //背景色
+
+brand1 = #0064FF
+brand2 = #00007A
+brand3 = #0032BE
+brand4 = #DEEFFF
+brand5 = #DDEAF5
+brandHover = #226AFF
+brandActive = #0032BE
+
+warning1 = #FFAA33
+warning2 = #FFF7C8
+
+basePadding = 10px 15px
+smallPadding = 5px 15px
+largePadding = 15px 15px 20px
+baseRounded = 3px
+largeRounded = 8px
+
+baseRing = 0 0 0 2px white, 0 0 0 4.5px brand1
+ringTransition = 0.06s ease
+buttonTransition = color 0.06s, background-color 0.06s
+
+monoFont = ui-monospace, SFMono-Regular, "SF Mono", "Roboto Mono", Menlo, Consolas, "Liberation Mono", monospace
+
+// ▼▼ 通用 ▼▼
+div.P-configuration, div.P-chat
+    background: white
+    // 按钮
+    .ant-btn
+        transition: ringTransition
+        box-shadow: none 
+        height: 42px
+        padding-inline: 20px
+        font-size: 16px
+        margin: 0
+        transition: buttonTransition
+        background: brand1
+        &:not(:disabled):hover, &:hover, .ant-btn-primary:not(:disabled):hover
+            color: white
+            background-color: brandHover
+            border: none
+        &:focus, &:not(:disabled):focus
+            color: white
+            background-color: brand1
+            border: none
+        &:active, &:not(:disabled):active
+            color: white
+            background-color: brandActive
+            border: none
+        div
+            display: none
+        &:not(:disabled):focus-visible
+            box-shadow: baseRing
+            outline: none
+            transition: ringTransition
+        &:focus-visible
+            box-shadow: baseRing
+            border-radius: baseRounded
+            transition: ringTransition
+
+    .ant-btn-default
+        border: none
+        background-color: gray6
+        color: gray3
+        transition: buttonTransition
+        &:not(:disabled):hover, &:hover, .ant-btn-primary:not(:disabled):hover
+            color: gray3
+            background-color: gray5
+        &:focus, &:not(:disabled):focus
+            color: gray3
+            background-color: gray6
+        &:active, &:not(:disabled):active
+            color: brand1
+            background-color: brand4
+        
+    // Input
+    .ant-input
+    .ant-input:hover
+    .ant-input:focus
+    input
+        background: gray6
+        padding: basePadding
+        transition: ringTransition
+        padding: basePadding !important
+        
+    .ant-input:focus
+        box-shadow: baseRing
+        border-radius: baseRounded
+        transition: ringTransition
+
+    .ant-input::placeholder
+        color: gray3 !important
+
+    // 表单
+    .ant-form-vertical .ant-form-item-label
+        padding-bottom: 5px 
+        font-weight: 500
+        user-select: none
+        cursor default
+        &>label
+            font-size: 16px
+            display: block
+
+    .ant-form-item
+        margin: 0
+
+// ▲▲ 通用 ▲▲
+
+// ▼▼ 弹窗 ▼▼
+div.M-root-modal-wappers // 包裹弹窗的容器，设置大小 = 弹窗大小，防止影响背景元素点击
+    width: 360px !important
+    height: 566px !important
+    overflow: visible !important
+div.M-root-modal // 弹窗
+    padding-bottom: 0
+    top: 0
+    .ant-modal-content
+        padding: 0 
+        border-radius: largeRounded
+        overflow: hidden
+        .ant-modal-close // 关闭按钮
+            top: 16px
+            inset-inline-end: 16px
+            color: gray4
+            transition: buttonTransition
+            box-sizing: content-box
+            padding: 5px
+            &:hover
+                color: gray3
+                background-color: gray6
+                transition: buttonTransition
+            &:active
+                color: gray3
+                background-color: gray5
+                transition: buttonTransition
+            &:focus-visible
+                border-radius: baseRounded
+                box-shadow: baseRing
+                outline: none
+                transition: ringTransition
+        .ant-modal-header
+            margin: 0
+            padding: 0
+            text-align: center
+            color: gray2
+            div
+                padding: largePadding
+                padding-top: 20px
+                padding-bottom: 10px
+            .ant-modal-title // 移除默认的 Padding
+                padding: 0 
+// ▲▲ 弹窗 ▲▲
+
+// ▼▼ Tab ▼▼
+div.M-tabs
+    .ant-tabs-nav // Tab 和底部描边
+        margin: 0
+        padding-bottom: 5px
+        border-bottom: 1px solid gray6
+        color: gray3
+        &::before // 清除底部灰色下划线
+            display: none
+        .ant-tabs-nav-wrap // Tab 到容器左右的间距
+            padding-inline: 15px
+            padding-block: 5px
+            .ant-tabs-nav-list // 标签满宽度实现
+                width: 100%
+                .ant-tabs-tab.ant-tabs-tab-active // 选中的 Tab，清除默认样式
+                    .ant-tabs-tab-btn
+                        text-shadow: none
+                        transition: ringTransition
+                        font-weight: 500
+                div[data-node-key="1"]
+                    margin-right: 5px !important
+
+                div[data-node-key="2"]
+                    margin-left: 5px !important
+                .ant-tabs-tab.ant-tabs-tab-active
+                    .ant-tabs-tab-btn, .ant-tabs-tab-btn:hover, .ant-tabs-tab-btn:focus
+                        color: brand1
+                .ant-tabs-tab
+                    width: 100%
+                    padding: 5px
+                    .ant-tabs-tab-btn, .ant-tabs-tab-btn:hover, .ant-tabs-tab-btn:focus
+                        color: gray3
+                    .ant-tabs-tab-btn:focus-visible
+                        border-radius: baseRounded
+                        box-shadow: baseRing
+                        outline: none
+                        transition: ringTransition
+                    &>div
+                        text-align: center
+                        flex: 1
+                .ant-tabs-tab>div
+                    font-size: 16px
+                    z-index: 1
+                .ant-tabs-ink-bar-animated // 改造底部蓝色指示器
+                    height: 100% !important
+                    background-color: gray6 !important
+                    border-radius: largeRounded
+                    overflow: hidden
+                    padding: basePadding
+
+// ▲▲ Tab ▲▲
+
+// ▼▼ 配置面板 ▼▼
+div.P-configuration
+    padding: largePadding
+    height: 460px
+    display: flex
+    flex-direction: column
+    gap: 20px
+    // key-value 表单
+    .key-value 
+        display: flex
+        flex-direction: column
+        flex-grow: 1
+        gap: 10px
+        textarea
+            resize: none
+            height 100% !important
+            border: none
+        .ant-form-item-row
+            height: 100%
+        .ant-form-item-control
+            .ant-form-item-control-input
+                height: 100%
+                .ant-form-item-control-input-content
+                    height: 100%
+    // 移除 Ant Design 默认垂直表单换行样式
+    @media (max-width: 575px) 
+        .key-value-form>div
+            div
+                flex: none !important
+                width: 100%;
+            div:nth-child(2)
+                flex-grow: 1 !important
+            textarea
+                height: 100% !important
+                
+    @media (max-width: 320px)
+        .api-key-form // 响应式适配：窄屏幕时换行
+            flex-direction: column
+            &>div:nth-child(2)
+                width: 100%
+                button
+                    width: 100%
+    input#apiKey
+        height: 42px
+        padding: 0
+        font-family: monoFont
+        background: gray6
+        padding: basePadding
+        transition: ringTransition
+        padding: basePadding !important
+        border: none
+    input#apiKey:focus
+        box-shadow: baseRing
+        border-radius: baseRounded
+        transition: ringTransition
+        border: none
+    input#apiKey::placeholder
+        color: gray3 !important
+// ▲▲ 配置面板 ▲▲
+
+// ▼▼ 聊天面板 ▼▼
+div.P-chat
+    display: flex
+    flex-direction: column
+    height: 460px
+    // 信息流
+    .chatline
+        display: flex
+        flex-direction: column
+        flex: 1
+        overflow-y: auto
+        padding: largePadding
+        padding-bottom: 0
+    // 气泡
+    .bubble
+        padding: basePadding
+        background: gray6
+        border-radius: largeRounded
+        margin-bottom: 20px
+        flex-shrink: 0 // 禁止缩小
+        align-self: flex-start // 改为左对齐
+        max-width: 90%
+        word-wrap: break-word
+        font-weight: 500
+        & p:first-child // 聊天气泡的名字
+            font-weight: 400
+
+    .bubble-right // User 的聊天气泡
+        align-self: flex-end
+        background: brand4
+        &>p
+            font-weight: 400
+
+    .bubble-center // System 的聊天气泡
+        width: 100%
+        max-width: 100%
+        background-color: warning2
+        text-align: center
+        font-weight: 400
+        .bubble-name
+            color: gray3
+            font-weight: 400
+            margin-bottom: 5px
+            user-select: none
+    // 聊天输入框
+    .input-message
+        padding: largePadding
+        margin-top: auto
+        border-top: 1px solid gray6
+        height: 140px
+        display: flex
+        flex-direction: column
+        gap: 10px
+        transition: height .2s
+        // 提交信息后的 loading
+        .message-loading
+            padding: smallPadding
+            display: flex
+            color: brand1
+            border-radius: baseRounded
+            font-size: 13px
+            background: brand4
+            color: brand
+            align-items: center
+            gap: 5px
+            user-select: none
+            .message-loading-spin
+                width: 15px
+                height: 15px
+                animation-name: spin
+                animation-duration: .3s
+                animation-timing-function: linear
+                animation-iteration-count: infinite
+                svg
+                    fill: brand1
+                @keyframes spin 
+                    from
+                        transform: rotate(0deg)
+                    to
+                        transform: rotate(360deg)
+        // 输入框动态高度
+        form
+            flex-grow: 1
+            display: flex
+            flex-direction: column
+            min-height: 0
+            transition: height .2s
+
+            div
+                flex-grow: 1
+                display: flex
+                flex-direction: column
+                transition: height .2s
+
+                div
+                    flex-grow: 1
+                    display: flex
+                    flex-direction: column  
+                    width: 100%
+                    min-height: 0
+                    transition: height .2s
+        textarea
+            height: 100%
+            transition: height .2s
+            resize: none
+            border: none
+    // .chatline //解开后能看到气泡出现的动画效果。有个问题是在输入框每输入一个字母，动画就会重复一次，是onChange的问题还是样式的问题
+    //     .bubble-right:last-child 
+    //         animation: bubbleRightShow .2s ease
+    //         @keyframes bubbleRightShow 
+    //                 from
+    //                     opacity: 0.5
+    //                     transform: translate(10px, 15px) scale(0.96)
+    //                 to
+    //                     opacity: 1
+    //                     transform: translate(0px, 0px) scale(1)
+    //     .bubble-center:last-child 
+    //         animation: bubbleCenterShow .2s ease
+    //         @keyframes bubbleCenterShow 
+    //             from
+    //                 opacity: 0.5
+    //                 transform: translateY(15px) scale(0.96)
+    //             to
+    //                 opacity: 1
+    //                 transform: translateY(0px) scale(1)
+    //     .bubble-left:last-child 
+    //         animation: bubbleLeftShow .2s ease
+    //         @keyframes bubbleLeftShow 
+    //             from
+    //                 opacity: 0
+    //                 transform: translate(-10px, 15px) scale(0.96)
+    //             to
+    //                 opacity: 1
+    //                 transform: translate(0px, 0px) scale(1)
+// ▲▲ 聊天面板 ▲▲

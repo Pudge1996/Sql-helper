@@ -30,7 +30,6 @@ function InputMessage({ value, onChange }) {
               onChange({value: e.target.value, status: "input"});
             }}
             bordered={false}
-            // autoSize={{ minRows: 3, maxRows: 3 }}
           />
         </Form.Item>
       </Form>
@@ -92,7 +91,7 @@ function Chat() {
   }
 
   return (
-    <div className="chat">
+    <div className="P-chat">
       <ChatWindow ref={chatWindowRef}/>
       <InputMessage value={input} onChange={handleChangeInput} />
     </div>

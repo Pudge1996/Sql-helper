@@ -41,7 +41,8 @@ function BuildTitle(props) {
         },
       }}
     >
-    <DragM  updateTransform={updateTransform}>
+
+    <DragM  updateTransform={updateTransform} >
       <div>{props.title}</div>
     </DragM>
     </ConfigProvider>
@@ -89,8 +90,11 @@ function App() {
         onCancel={handleCancel}
         footer={false}
         width={360}
-        className="root-modal"
+        className="M-root-modal"
+        id="rootModal"
         // closeIcon={customIcon} 这个也得传进来，很关键
+        zIndex="99999"
+        wrapClassName="M-root-modal-wappers"
       >
         <Tabs
           defaultActiveKey="1"
@@ -99,6 +103,7 @@ function App() {
           size="small"
           tabBarGutter="0"
           animated={{ inkBar: true, tabPane: false }}
+          className="M-tabs"
         />
       </Modal>
   );

@@ -86,7 +86,7 @@ function MainModal(props) {
 
   return (
 
-    <div className="configuration">
+    <div className="P-configuration">
       <Form layout="vertical" className="key-value">
         {/* Key & Value 表单 */}
         <Form.Item
@@ -102,6 +102,7 @@ function MainModal(props) {
             value={text}
             onChange={handleIptChange}
             bordered={false}
+            classNames="key&value"
           />
         </Form.Item>
         <Form.Item>
@@ -122,6 +123,7 @@ function MainModal(props) {
           <Input.Password
             ref={apiKeyRef}
             name="apiKeyInput"
+            id="apiKey"
             bordered={false}
             className="api_key_input"
             visibilityToggle={false}

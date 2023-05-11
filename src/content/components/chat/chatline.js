@@ -10,7 +10,7 @@ const ChatLine = ({ role, message }) => {
       bubbleClass = 'bubble-center';
       break;
     case 'assistant':
-      bubbleClass = '';
+      bubbleClass = 'bubble-left';
       break;
   }
   return (
