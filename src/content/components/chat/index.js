@@ -50,7 +50,7 @@ function Chat(props) {
         model: "gpt-3.5-turbo",
         // model: "gpt-3.5-turbo-0301",
         messages: [...currentMessages],
-        temperature: 0.1, // 0 ~ 1 越接近 1 越具有不确定性
+        temperature: 0.7, // 0 ~ 1 越接近 1 越具有不确定性
         // top_p: 0.1, // 
         // best_of: 3, // 
         max_tokens: 2048, // 

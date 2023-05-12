@@ -41,13 +41,7 @@ function ConfigurationWindow(props) {
 
     const preSetText = `假设今年是2023年，SQL映射关系如下：`
     const results = `${preSetText}
-      ${keywordMappings}
-      工作项类型是需求：joinGet('issue_type_join', 'detail_type', issue_type_uuid) = 1，
-      工作项类型是缺陷：joinGet('issue_type_join', 'detail_type', issue_type_uuid) = 3，
-      工作项数量：COUNT(*)，
-      未开始的工作项数量：CountIf(joinGet('status_join', 'status_category', status_uuid) = 1)，
-      已完成的工作项数量：CountIf(joinGet('status_join', 'status_category', status_uuid) = 3)，
-      根据我的要求写出SQL语句。`;
+      ${keywordMappings}`;
 
     // 原始代码
     // const results = `${preSetText}
