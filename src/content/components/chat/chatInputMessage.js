@@ -27,7 +27,7 @@ function ChatInputMessage({loading, value, onChange }) {
             onKeyDown={(e) => {
               if (e.key === "Enter") {
                 e.preventDefault(); // 阻止默认行为
-                onChange({value: "", status: "enter"});
+                !loading && onChange({value: "", status: "enter"});
               }
             }}
             onChange={(e) => {
