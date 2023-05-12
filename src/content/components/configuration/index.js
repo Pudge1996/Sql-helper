@@ -34,16 +34,20 @@ function ConfigurationWindow(props) {
         const key = array[index].trim();
         const value = array[index + 1];
         // acc.push({ [key]: value });
-        acc += `${key}: ${value},\n`;
+        acc += `${key} 的SQL规则是：${value},\n`;
       }
       return acc;
     }, '');
 
     const preSetText = `假设今年是2023年，SQL映射关系如下：`
-    const results = `
-      ${preSetText}
+    const results = `${preSetText}
       ${keywordMappings}
-    `;
+      工作项类型是需求：joinGet('issue_type_join', 'detail_type', issue_type_uuid) = 1，
+      工作项类型是缺陷：joinGet('issue_type_join', 'detail_type', issue_type_uuid) = 3，
+      工作项数量：COUNT(*)，
+      未开始的工作项数量：CountIf(joinGet('status_join', 'status_category', status_uuid) = 1)，
+      已完成的工作项数量：CountIf(joinGet('status_join', 'status_category', status_uuid) = 3)，
+      根据我的要求写出SQL语句。`;
 
     // 原始代码
     // const results = `${preSetText}
@@ -76,14 +80,14 @@ function ConfigurationWindow(props) {
       <Form layout="vertical" className="key-value">
         {/* Key & Value 表单 */}
         <Form.Item
-          label="Key & Value"
+          label="SQL 规则"
           htmlFor="key&value"
           className="key-value-form"
           style={{ flexGrow: "1", height: "100%" }}
         >
           <TextArea
             ref={textAreaRef}
-            placeholder="粘贴 SQL 的 Key & Value"
+            placeholder="在此处填入 SQL 的 Key 和 Value"
             id="key&value"
             value={text}
             onChange={handleIptChange}
@@ -114,6 +118,7 @@ function ConfigurationWindow(props) {
             className="api_key_input"
             visibilityToggle={false}
             placeholder="sk-**********"
+            type="apikey"
           />
         </Form.Item>
         <Form.Item>
