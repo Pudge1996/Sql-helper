@@ -29,7 +29,10 @@ function Chat(props) {
       if(promptData.role && promptData.role !== 'system') {
         console.log('有新的配置，需要重新请求');
         chatWindowRef.current.initMessages(promptData);
-        handlePostChat('init')
+        setIsLoading(true);
+        setTimeout(() => {
+          handlePostChat('init')
+        }, 1000);
       }
 
   },[promptData])
