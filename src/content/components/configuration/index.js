@@ -42,23 +42,6 @@ function ConfigurationWindow(props) {
     '创建者': 'joinGet('user_join', 'name', owner)'
     '需求来源': 'joinGet('field_option_join', 'name', __string_fields['A4XAAfkk'])'
     `;
-    // const results = `
-    // ${preSetText}
-    // '工作项标题': 'summary'
-    // '创建时间': 'create_time'
-    // '创建者': 'joinGet('user_join', 'name', owner)'
-    // '截止日期': 'toStartOfDay(deadline)'
-    // '状态': 'joinGet('status_join', 'name', status_uuid)'
-    // '需求来源': 'joinGet('field_option_join', 'name', __string_fields['A4XAAfkk'])'
-    // `;
-    // const results = `${preSetText}
-    // ${keywordMappings.join('\n')}。
-    // `;
-
-    // 小调后
-    // const results = `${preSetText}
-    // ${keywordMappings.join('\n')}。
-    // `;
 
     // 原始代码
     // const results = `${preSetText}
