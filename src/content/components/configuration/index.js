@@ -37,10 +37,10 @@ function ConfigurationWindow(props) {
     const preSetText = `假设今年是2023年，SQL映射关系如下：`
     const results = `
     ${preSetText}
-    '工作项数量': 'COUNT(*)'
-    '创建时间': 'create_time'
-    '创建者': 'joinGet('user_join', 'name', owner)'
-    '需求来源': 'joinGet('field_option_join', 'name', __string_fields['A4XAAfkk'])'
+    工作项数量: COUNT(*), 
+    创建时间: create_time, 
+    创建者: joinGet('user_join', 'name', owner), 
+    需求来源: joinGet('field_option_join', 'name', __string_fields['A4XAAfkk'])
     `;
 
     // 原始代码
