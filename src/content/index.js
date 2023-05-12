@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom/client'
 import MainModal from './components/mainModal'
 import './content.styl'
 // 从插件中拿资源，这样避免src中资源打成base64
-// const iconUrl = chrome.runtime.getURL('/images/icon.png');
+// const iconUrl = chrome.runtime.getURL('/images/sql_helper_logo.png');
 
 
 function Content() {
