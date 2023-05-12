@@ -28,7 +28,7 @@
 	"host_permissions": [],
 	"web_accessible_resources": [
 		{
-			"resources": ["/images/app.png", "/images/icon.png"],
+			"resources": ["/images/app.png", "/images/sql_helper_logo_128.png"],
 			"matches": ["<all_urls>"]
 		},
 		{
@@ -39,10 +39,10 @@
 	"action": {
 		"default_popup": "index.html",
 		"default_icon": {
-			"16": "/images/icon.png",
-			"32": "/images/icon.png",
-			"48": "/images/icon.png",
-			"128": "/images/icon.png"
+			"16": "/images/sql_helper_logo_128.png",
+			"32": "/images/sql_helper_logo_128.png",
+			"48": "/images/sql_helper_logo_128.png",
+			"128": "/images/sql_helper_logo_128.png"
 		},
 		"default_title": "ONES Sql-helper"
 	}
