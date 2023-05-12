@@ -5,7 +5,7 @@ function ChatWindow(props, ref) {
   const chatSelfRef = useRef(null);
   const testData = [
     {
-      role: 'system',
+      role: 'assistant',
       content: '欢迎使用 ONES Sql-helper 在使用前请在配置页初始化prompt,以便更好生成相应内容'
     }
   ]
@@ -21,16 +21,15 @@ function ChatWindow(props, ref) {
         getMessages: () => messages
     }))
     useEffect(()=>{
-        console.log('当前聊天排序队列',messages)
+        console.log('聊天窗口中的_____message ',messages)
         chatSelfRef.current.scrollTop = chatSelfRef.current.scrollHeight;
-
     },[messages])
-  return (
-      <div className="chatline" ref={chatSelfRef}>
-      {messages.map((item, index) => (
-        <ChatLine key={`${index}-${Math.random(100)}`} role={item.role} message={item.content} />
-      ))}
-    </div>
-  );
+    return (
+        <div className="chatline" ref={chatSelfRef}>
+        {messages.map((item, index) => (
+          <ChatLine key={`${index}-${Math.random(100)}`} role={item.role} message={item.content} />
+        ))}
+      </div>
+    );
 }
 export default forwardRef(ChatWindow)
