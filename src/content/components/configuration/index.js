@@ -39,7 +39,7 @@ function ConfigurationWindow(props) {
       return acc;
     }, '');
 
-    const preSetText = `假设今年是2023年，SQL映射关系如下：`
+    const preSetText = `假设今年是2023年，你的回答必须参考以下SQL映射关系：`
     const results = `${preSetText}
       ${keywordMappings}`;
 
