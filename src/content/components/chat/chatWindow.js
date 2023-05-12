@@ -3,13 +3,8 @@ import ChatLine from "./chatline";
 
 function ChatWindow(props, ref) {
   const chatSelfRef = useRef(null);
-  const testData = [
-    {
-      role: 'assistant',
-      content: '欢迎使用 ONES Sql-helper 在使用前请在配置页初始化prompt,以便更好生成相应内容'
-    }
-  ]
-  const [messages, setMessages] = useState([...testData]);
+
+  const [messages, setMessages] = useState([]);
 
     useImperativeHandle(ref, () => ({
         addMessage: (message) => {
@@ -26,6 +21,7 @@ function ChatWindow(props, ref) {
     },[messages])
     return (
         <div className="chatline" ref={chatSelfRef}>
+        {messages.length === 0 && <ChatLine role="assistant" message='欢迎使用 ONES Sql-helper 在使用前请在配置页初始化prompt,以便更好生成相应内容'/>}
         {messages.map((item, index) => (
           <ChatLine key={`${index}-${Math.random(100)}`} role={item.role} message={item.content} />
         ))}
