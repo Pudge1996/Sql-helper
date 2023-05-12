@@ -7,10 +7,10 @@
 		"service_worker": "static/js/background.js"
 	},
 	"icons": {
-		"16": "/images/icon.png",
-		"32": "/images/icon.png",
-		"48": "/images/icon.png",
-		"128": "/images/icon.png"
+		"16": "/images/sql_helper_logo_16.png",
+		"32": "/images/sql_helper_logo_32.png",
+		"48": "/images/sql_helper_logo_48.png",
+		"128": "/images/sql_helper_logo_128.png"
 	},
 
 	"content_scripts": [
