@@ -1,7 +1,7 @@
 
 import { useState, useRef, React} from "react";
 import { Button, Input, Form } from "antd";
-import { apiReqs, setLocalStorage } from '@/api'
+// import { apiReqs, setLocalStorage } from '@/api'
 
 function ConfigurationWindow(props) {
 
@@ -17,30 +17,32 @@ function ConfigurationWindow(props) {
   };
 
   const presetPrompt = () => {
-    // console.log('????', textAreaRef)
-    // return
     const text = textAreaRef.current.resizableTextArea.textArea.value;
     const prompt = {
       role: 'user',
       content: formatTextPrompt(text),
     }
+    
     updateData(prompt); // 传值到 chat
     window.localStorage.setItem('prompt', JSON.stringify(prompt));
   }
 
   const formatTextPrompt = (text) => {
-    const lines = text.trim().split('\n');
-    const keywordMappings = lines.map(line => {
-      const [keyword, sql] = line.split('\t');
-      return `'${keyword}': '${sql}',`;
-    });
+    const lines = text.trim().split(/[\n]+/);
+    const keywordMappings = lines.reduce((acc, curr, index, array) => {
+      if (index % 2 === 0 && index + 1 < array.length) {
+        const key = array[index].trim();
+        const value = array[index + 1];
+        // acc.push({ [key]: value });
+        acc += `${key}: ${value},\n`;
+      }
+      return acc;
+    }, '');
+
     const preSetText = `假设今年是2023年，SQL映射关系如下：`
     const results = `
-    ${preSetText}
-    工作项数量: COUNT(*), 
-    创建时间: create_time, 
-    创建者: joinGet('user_join', 'name', owner), 
-    需求来源: joinGet('field_option_join', 'name', __string_fields['A4XAAfkk'])
+      ${preSetText}
+      ${keywordMappings}
     `;
 
     // 原始代码
@@ -53,13 +55,13 @@ function ConfigurationWindow(props) {
     //   接下来的对话中我将通过自然语言向你提问，你只需要返回与此相关的SQL语句给我即可。
     // `;
 
-    return results.trim();
+    return results;
   }
 
   // 保存API Key
   const setCustomApiKey = (e) => {
     const apiKey = apiKeyRef.current.input.value;
-    setApiKey(apiKey)
+    // setApiKey(apiKey)
     window.localStorage.setItem('apiKey', apiKey);
     // setLocalStorage({apiKey}, (res) => {
     //   console.log('检验保持情况', res)

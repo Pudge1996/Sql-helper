@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import { Input, Form } from "antd";
 import ChatWindow from "./chatWindow";
 import { apiReqs } from  "@/api"
-/* global chrome */
+
 // TODO: 待抽离
 function InputMessage({ value, onChange }) {
   const { TextArea } = Input;
