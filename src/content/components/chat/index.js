@@ -78,7 +78,7 @@ function Chat(props) {
       data: {
         model: "gpt-3.5-turbo",
         messages: [...currentMessages],
-        temperature: 0.7, // 0 ~ 1 越接近 1 越具有不确定性
+        temperature: 0.2, // 0 ~ 1 越接近 1 越具有不确定性
         max_tokens: 2048, // 
       },
       success: (res) => {
