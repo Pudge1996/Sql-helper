@@ -9,12 +9,12 @@ function InputMessage({ value, onChange }) {
 
   return (
     <div className="input-message">
-      <div className="message-loading">
+      {/* <div className="message-loading">
         <div className="message-loading-spin">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 3C16.9706 3 21 7.02944 21 12H19C19 8.13401 15.866 5 12 5V3Z"></path></svg>
         </div>
         <span>加载中，请稍候...</span>
-      </div>
+      </div> */}
       <Form layout="vertical">
         <Form.Item>
           <TextArea
@@ -78,7 +78,7 @@ function Chat(props) {
       data: {
         model: "gpt-3.5-turbo",
         messages: [...currentMessages],
-        temperature: 0.2, // 0 ~ 1 越接近 1 越具有不确定性
+        temperature: 0.5, // 0 ~ 1 越接近 1 越具有不确定性
         max_tokens: 2048, // 
       },
       success: (res) => {
